@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Anatolian rock, 1965 to 1980: the Turkish genre that ran Anatolian folk melodies through fuzz pedals. A field guide to Erkin Koray, Selda Bağcan, Cem Karaca, Barış Manço and Moğollar — with a playable makam instrument.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Anatolian Rock — A field guide, 1965 to 1980">
+<meta property="og:description" content="A newspaper contest started it, a military coup ended it. The people, the records, and a playable instrument tuned to Turkish makam intervals.">
+<meta name="twitter:card" content="summary_large_image">
+<title>Anatolian Rock — A field guide, 1965 to 1980</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Monoton&family=Rubik:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --hero:"Monoton",Georgia,serif;
+  --void:#1B0A2E;
+  --void-deep:#12061F;
+  --krem:#FFF2D8;
+  --pembe:#FF3E7F;
+  --turkuaz:#00C6B4;
+  --safran:#FFC42E;
+  --portakal:#FF6B1A;
+  --mor:#8B3FEA;
+  --measure:34rem;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+}
+
+body{
+  background:var(--void);
+  color:var(--krem);
+  font-family:"Rubik",system-ui,sans-serif;
+  font-size:18px;line-height:1.62;font-weight:300;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+
+h1,h2,h3,.display{font-family:"Alfa Slab One",Georgia,serif;font-weight:400;line-height:0.95;letter-spacing:-0.01em}
+/* Type system — three faces, one of which appears exactly once.
+   --hero  Monoton      the wordmark only. A logo, not a text role.
+   h1-h3   Alfa Slab One every heading.
+   body    Rubik        prose, and the .mono label role at weight 700. */
+.mono{font-family:"Rubik",system-ui,sans-serif;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;font-size:0.62rem;line-height:1.7}
+
+a{color:inherit}
+:focus-visible{outline:3px solid var(--safran);outline-offset:3px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3.5rem);position:relative;z-index:2}
+
+/* ============ oil-projector lightshow ============ */
+.lightshow{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;mix-blend-mode:screen}
+.b1{width:60vw;height:60vw;background:var(--pembe);top:-15%;left:-10%;animation:drift1 28s ease-in-out infinite}
+.b2{width:52vw;height:52vw;background:var(--turkuaz);bottom:-20%;right:-8%;animation:drift2 34s ease-in-out infinite}
+.b3{width:44vw;height:44vw;background:var(--mor);top:35%;left:45%;animation:drift3 41s ease-in-out infinite}
+.b4{width:34vw;height:34vw;background:var(--portakal);bottom:10%;left:12%;animation:drift2 25s ease-in-out infinite reverse}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(14vw,10vh) scale(1.2)}66%{transform:translate(-6vw,16vh) scale(.85)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-16vw,-12vh) scale(1.25)}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(-20vw,8vh) scale(1.15)}75%{transform:translate(10vw,-14vh) scale(.9)}}
+
+/* halftone dot veil */
+.grain{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.3;
+  background-image:radial-gradient(circle,rgba(0,0,0,.55) 1px,transparent 1.2px);
+  background-size:5px 5px;}
+
+/* ============ playhead ============ */
+#playhead{position:fixed;top:0;left:0;height:5px;width:0%;z-index:80;
+  background:linear-gradient(90deg,var(--pembe),var(--portakal),var(--safran),var(--turkuaz),var(--mor));}
+#yearTag{position:fixed;top:1.4rem;right:1.1rem;z-index:80;
+  background:var(--safran);color:var(--void);padding:.5rem .8rem;border-radius:999px;
+  font-family:"Rubik",system-ui,sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.12em;
+  box-shadow:0 0 0 3px var(--void),0 0 0 5px var(--pembe);
+  opacity:0;transform:scale(.8);transition:opacity .35s ease,transform .35s ease;}
+#yearTag.on{opacity:1;transform:scale(1)}
+
+
+/* ============ scrubber nav ============
+   The progress bar doubles as the table of contents. Segments are sized
+   to each section's real height, so the bar reads as a record scrubber:
+   where you are, and how much of each part is left. */
+#scrub{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;
+  height:7px;background:rgba(18,6,31,.9);
+  transition:height .26s cubic-bezier(.2,.8,.3,1)}
+#scrub:hover,#scrub:focus-within{height:2.5rem}
+#scrub a{position:relative;display:flex;align-items:center;justify-content:center;
+  min-width:0;text-decoration:none;color:var(--krem);
+  border-right:1px solid rgba(18,6,31,.85);overflow:hidden}
+#scrub a:last-child{border-right:0}
+#scrub a::before{content:"";position:absolute;inset:0;opacity:.5;transition:opacity .2s}
+#scrub a:nth-child(1)::before{background:var(--pembe)}
+#scrub a:nth-child(2)::before{background:var(--portakal)}
+#scrub a:nth-child(3)::before{background:#6E6E6E}
+#scrub a:nth-child(4)::before{background:var(--safran)}
+#scrub a:nth-child(5)::before{background:var(--turkuaz)}
+#scrub a:nth-child(6)::before{background:var(--mor)}
+#scrub a:nth-child(7)::before{background:var(--pembe)}
+#scrub a:hover::before,#scrub a:focus-visible::before{opacity:1}
+#scrub a[aria-current="true"]::before{opacity:.95}
+#scrub a span{position:relative;z-index:1;opacity:0;white-space:nowrap;
+  font-family:"Rubik",system-ui,sans-serif;font-weight:700;font-size:.55rem;
+  letter-spacing:.1em;text-transform:uppercase;padding:0 .3rem;
+  transition:opacity .18s ease .06s;text-shadow:0 1px 3px rgba(18,6,31,.9)}
+#scrub:hover a span,#scrub:focus-within a span{opacity:1}
+#scrub a:focus-visible{outline:3px solid var(--krem);outline-offset:-3px}
+/* the fill rides on top and still shows read-progress */
+#playhead{top:0;height:3px;z-index:92;pointer-events:none}
+@media(max-width:719px){
+  /* No hover on touch, and 7 labels across 375px clip to nonsense
+     (narrowest segment is ~34px). Show only where you are, and let that
+     one label spill over its neighbours rather than truncate. */
+  #scrub{height:1.35rem}
+  #scrub a{overflow:visible}
+  #scrub a span{opacity:0;font-size:.5rem;letter-spacing:.03em}
+  #scrub a[aria-current="true"] span{opacity:1}
+}
+@media (prefers-reduced-motion:reduce){
+  #scrub,#scrub a span{transition:none}
+}
+
+/* ============ hero ============ */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;padding:7rem 0 4rem;}
+.rosette{position:absolute;top:50%;left:50%;width:135vmin;height:135vmin;
+  transform:translate(-50%,-50%);pointer-events:none;opacity:.22;z-index:1;
+  background:
+    repeating-conic-gradient(from 0deg,var(--safran) 0 6deg,transparent 6deg 12deg),
+    repeating-radial-gradient(circle at center,rgba(255,242,216,.5) 0 2px,transparent 2px 22px);
+  mask-image:radial-gradient(circle,#000 12%,transparent 60%);
+  -webkit-mask-image:radial-gradient(circle,#000 12%,transparent 60%);
+  animation:spin 150s linear infinite;}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+.arch{display:flex;justify-content:center;flex-wrap:nowrap;margin-bottom:.2rem}
+.arch{gap:clamp(.05rem,.6vw,.5rem)}
+.arch span{font-family:var(--hero);font-size:clamp(2.3rem,10.5vw,8.2rem);line-height:1;
+  display:inline-block;transform-origin:50% 135%;
+  filter:drop-shadow(0 0 10px currentColor) drop-shadow(0 0 26px currentColor);}
+.rock{font-family:var(--hero);text-align:center;font-size:clamp(2.9rem,14.5vw,11rem);line-height:1;
+  color:var(--krem);letter-spacing:.015em;margin-top:.1em;
+  text-shadow:0 0 7px rgba(255,242,216,.65),0 0 30px var(--pembe),0 0 62px var(--mor);
+  animation:hum 5.5s ease-in-out infinite;}
+@keyframes hum{
+  0%,100%{text-shadow:0 0 7px rgba(255,242,216,.65),0 0 30px var(--pembe),0 0 62px var(--mor)}
+  50%{text-shadow:0 0 9px rgba(255,242,216,.8),0 0 40px var(--pembe),0 0 84px var(--mor)}}
+@media (prefers-reduced-motion:reduce){.rock{animation:none}}
+.hero-kicker{color:var(--safran);text-align:center;display:block;margin-bottom:2.4rem}
+.hero-years{text-align:center;font-family:"Rubik",system-ui,sans-serif;font-weight:700;
+  font-size:clamp(.75rem,2.2vw,1.05rem);letter-spacing:.4em;
+  margin:2.2rem 0 2.4rem;color:var(--turkuaz);}
+.thesis{max-width:var(--measure);margin:0 auto;text-align:center;
+  font-size:clamp(1.1rem,2.3vw,1.42rem);line-height:1.5;font-weight:400;}
+.thesis b{font-weight:700;color:var(--safran)}
+.scroll-cue{text-align:center;margin-top:3.4rem;color:var(--pembe)}
+
+/* ============ wavy dividers ============ */
+.wave{display:block;width:100%;height:52px;position:relative;z-index:3;margin-bottom:-1px}
+.wave.flip{transform:rotate(180deg);margin:-1px 0 0}
+
+/* ============ sections ============ */
+section{padding:clamp(4.5rem,10vw,8rem) 0;position:relative}
+.eyebrow{display:inline-block;margin-bottom:1.4rem;padding:.42rem .8rem;border-radius:999px;
+  background:var(--pembe);color:var(--krem);}
+h2{font-size:clamp(2rem,6.4vw,4.2rem);margin-bottom:1.6rem}
+h2 em{font-style:normal;color:var(--safran)}
+.lede{max-width:var(--measure);font-size:1.1rem;font-weight:400}
+.lede + .lede{margin-top:1rem}
+
+/* --- origin: cream panel, dark type --- */
+#origin{background:var(--safran);color:#2A1005}
+#origin .eyebrow{background:#2A1005;color:var(--safran)}
+#origin h2 em{color:var(--pembe)}
+.origin-grid{display:grid;grid-template-columns:1fr;gap:2.6rem;align-items:start}
+@media(min-width:900px){.origin-grid{grid-template-columns:1.15fr .85fr;gap:4rem}}
+.clipping{background:#2A1005;color:var(--safran);padding:2.2rem;border-radius:26px;
+  transform:rotate(-1.6deg);box-shadow:10px 10px 0 var(--portakal)}
+.clipping .mono{display:block;margin-bottom:1.1rem;color:var(--pembe)}
+.clipping blockquote{font-size:1.2rem;line-height:1.42;font-weight:400;font-style:italic}
+.clipping cite{display:block;margin-top:1.1rem;font-style:normal;font-size:.85rem;opacity:.7}
+.contest-list{list-style:none;margin-top:2rem;border-top:3px solid #2A1005}
+.contest-list li{display:grid;grid-template-columns:4.4rem 1fr;gap:1.1rem;
+  padding:.85rem 0;border-bottom:1px dashed rgba(42,16,5,.4);font-size:.98rem;font-weight:400}
+.contest-list .yr{font-family:"Rubik",system-ui,sans-serif;font-weight:700;letter-spacing:.1em;font-size:.72rem;padding-top:.28rem}
+
+/* --- timeline --- */
+#timeline{background:var(--void-deep);overflow:hidden}
+.tl{position:relative;margin-top:3.4rem}
+.tl::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;border-radius:3px;
+  background:linear-gradient(180deg,var(--turkuaz),var(--safran),var(--portakal),var(--pembe));}
+@media(min-width:820px){.tl::before{left:calc(50% - 2px)}}
+.beat{position:relative;padding:0 0 3.4rem 1.9rem}
+.beat .yr{font-family:"Rubik",system-ui,sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.1em;
+  color:var(--safran);display:block;margin-bottom:.5rem}
+.beat h3{font-size:1.3rem;margin-bottom:.5rem;color:var(--krem)}
+.beat p{font-size:1rem;line-height:1.55;color:rgba(255,242,216,.85);max-width:30rem;font-weight:300}
+.beat::before{content:"";position:absolute;left:-7px;top:.3rem;width:19px;height:19px;border-radius:50%;
+  background:var(--safran);box-shadow:0 0 0 4px var(--void-deep),0 0 0 7px var(--turkuaz)}
+.beat.pol .yr{color:var(--pembe)}
+.beat.pol h3{font-family:"Rubik",sans-serif;font-weight:700;font-size:1.12rem;letter-spacing:0}
+.beat.pol::before{background:var(--pembe);box-shadow:0 0 0 4px var(--void-deep),0 0 0 7px var(--mor)}
+@media(min-width:820px){
+  .beat{width:50%;padding:0 3.2rem 3.8rem 0;text-align:right}
+  .beat p{margin-left:auto}
+  .beat::before{left:auto;right:-11px}
+  .beat.pol{margin-left:50%;padding:0 0 3.8rem 3.2rem;text-align:left}
+  .beat.pol::before{left:-11px;right:auto}
+  .beat.pol p{margin-left:0}
+}
+.track-key{display:flex;gap:1.6rem;flex-wrap:wrap;margin-bottom:1rem}
+.track-key span{padding:.35rem .75rem;border-radius:999px}
+.key-m{background:var(--safran);color:var(--void)}
+.key-p{background:var(--pembe);color:var(--krem)}
+
+/* --- figures --- */
+#figures{background:var(--void)}
+.figs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.4rem;margin-top:3rem}
+.fig{border-radius:28px;padding:2rem 1.7rem;color:#1B0A2E;position:relative;overflow:hidden;
+  transition:transform .35s cubic-bezier(.2,.8,.3,1)}
+.fig:hover{transform:translateY(-7px) rotate(-1deg)}
+.fig:nth-child(1){background:var(--pembe);color:var(--krem)}
+.fig:nth-child(2){background:var(--turkuaz)}
+.fig:nth-child(3){background:var(--safran)}
+.fig:nth-child(4){background:var(--mor);color:var(--krem)}
+.fig:nth-child(5){background:var(--portakal);color:var(--krem)}
+.fig:nth-child(6){background:var(--turkuaz)}
+.fig:nth-child(7){background:var(--safran)}
+.fig:nth-child(8){background:var(--pembe);color:var(--krem)}
+.label{width:76px;height:76px;border-radius:50%;margin-bottom:1.3rem;position:relative;
+  display:grid;place-items:center;background:#1B0A2E;
+  background-image:repeating-radial-gradient(circle,rgba(255,242,216,.16) 0 1px,transparent 1px 5px);
+  transition:transform .8s cubic-bezier(.2,.8,.3,1)}
+.fig:hover .label{transform:rotate(360deg)}
+.label::after{content:"";width:12px;height:12px;border-radius:50%;background:currentColor}
+.fig h3{font-size:1.35rem;margin-bottom:.35rem}
+.fig .role{font-family:"Rubik",system-ui,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;
+  text-transform:uppercase;display:block;margin-bottom:1rem;opacity:.72}
+.fig p{font-size:.95rem;line-height:1.55;font-weight:400}
+.track{margin-top:1.1rem;padding-top:.85rem;border-top:2px solid currentColor;font-size:.88rem;opacity:.9}
+.track b{font-weight:700}
+
+/* --- coup: all color drains --- */
+#coup{background:#0A0A0A;color:#8A8A8A;filter:saturate(0)}
+#coup .eyebrow{background:#2A2A2A;color:#8A8A8A}
+#coup h2{font-size:clamp(1.6rem,4.8vw,3rem);color:#B8B8B8}
+#coup .date{font-family:"Rubik",system-ui,sans-serif;font-weight:700;font-size:clamp(1.4rem,6.5vw,3.8rem);
+  letter-spacing:.12em;color:#4E4E4E;margin-bottom:1.8rem}
+#coup .lede{color:#8A8A8A}
+.aftermath{list-style:none;margin-top:2.6rem;max-width:44rem}
+.aftermath li{padding:1.1rem 0;border-top:1px solid #262626;font-size:.97rem;font-weight:300}
+.aftermath .who{font-family:"Alfa Slab One",serif;font-size:.95rem;color:#ABABAB;display:block;margin-bottom:.3rem}
+
+/* --- after --- */
+#after{background:var(--mor);color:var(--krem)}
+#after .eyebrow{background:var(--safran);color:#2A1005}
+#after h2 em{color:var(--safran)}
+#after .lede b{color:var(--safran);font-weight:700}
+.revival{display:grid;gap:1.2rem;margin-top:2.8rem;grid-template-columns:repeat(auto-fit,minmax(238px,1fr))}
+.rev{background:rgba(27,10,46,.5);border:2px solid rgba(255,242,216,.28);border-radius:22px;padding:1.7rem}
+.rev .yr{font-family:"Rubik",system-ui,sans-serif;font-weight:700;color:var(--safran);font-size:.66rem;
+  letter-spacing:.1em;display:block;margin-bottom:.6rem}
+.rev h3{font-size:1.12rem;margin-bottom:.5rem}
+.rev p{font-size:.93rem;font-weight:300;color:rgba(255,242,216,.88)}
+
+/* --- listen --- */
+#listen{background:var(--void-deep)}
+.side-label{display:inline-block;margin:2.6rem 0 1rem;padding:.42rem .8rem;border-radius:999px;
+  background:var(--turkuaz);color:var(--void)}
+.tracks{list-style:none;border-top:3px solid var(--turkuaz)}
+.tracks li{display:grid;grid-template-columns:2.4rem 1fr;gap:1rem;align-items:baseline;
+  padding:1rem 0;border-bottom:1px solid rgba(255,242,216,.16)}
+.tracks .n{font-family:"Rubik",system-ui,sans-serif;font-weight:700;letter-spacing:.08em;font-size:.66rem;color:var(--pembe)}
+.tracks .ti{font-family:"Alfa Slab One",serif;font-size:1.02rem;display:block;color:var(--krem)}
+.tracks .by{font-size:.9rem;color:var(--safran);font-weight:500}
+.tracks .note{display:block;font-size:.88rem;color:rgba(255,242,216,.62);margin-top:.25rem;max-width:38rem;font-weight:300}
+
+/* --- footer --- */
+footer{padding:4rem 0 5.5rem;background:var(--void);color:rgba(255,242,216,.62);font-size:.9rem;font-weight:300}
+footer p{max-width:44rem;margin-bottom:1rem}
+footer .mono{display:inline-block;margin-bottom:1.3rem;padding:.4rem .8rem;border-radius:999px;
+  background:var(--portakal);color:var(--krem)}
+
+
+/* ============ artist sleeves (abstract, swappable) ============ */
+.sleeve{width:100%;aspect-ratio:1/1;border-radius:20px;overflow:hidden;margin-bottom:1.2rem;
+  background:#1B0A2E;display:block;position:relative}
+.sleeve svg{width:100%;height:100%;display:block}
+.sleeve img{width:100%;height:100%;object-fit:cover;display:block}
+.fig:hover .sleeve svg .spin{animation:spin 6s linear infinite}
+.fig .label{position:absolute;bottom:12px;right:12px;width:44px;height:44px;margin:0;z-index:2;
+  box-shadow:0 0 0 3px rgba(27,10,46,.8)}
+.fig{padding-top:1.5rem}
+
+/* ============ timeline motion ============ */
+.tl-fill{position:absolute;left:0;top:0;width:5px;border-radius:3px;height:0;z-index:1;
+  background:linear-gradient(180deg,var(--turkuaz),var(--safran),var(--portakal),var(--pembe));
+  box-shadow:0 0 14px rgba(255,196,46,.55);transition:height .12s linear}
+@media(min-width:820px){.tl-fill{left:calc(50% - 2px)}}
+.tl::before{opacity:.18;background:var(--krem)!important}
+.beat{opacity:0;transform:translateX(-34px);
+  transition:opacity .65s ease,transform .65s cubic-bezier(.2,.8,.3,1)}
+.beat::before{transform:scale(0);transition:transform .5s cubic-bezier(.3,1.6,.5,1) .12s}
+.beat.lit{opacity:1;transform:none}
+.beat.lit::before{transform:scale(1)}
+@media(min-width:820px){.beat.pol{transform:translateX(34px)}.beat.pol.lit{transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .beat{opacity:1;transform:none}.beat::before{transform:scale(1)}
+  .tl-fill{display:none}.tl::before{opacity:1;background:linear-gradient(180deg,var(--turkuaz),var(--pembe))!important}
+}
+
+/* ============ listen links ============ */
+.tracks li a.play{display:inline-flex;align-items:center;gap:.4rem;margin-top:.45rem;
+  font-family:"Rubik",system-ui,sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.09em;text-transform:uppercase;
+  text-decoration:none;background:var(--pembe);color:var(--krem);
+  padding:.36rem .7rem;border-radius:999px;transition:transform .2s ease,background .2s ease}
+.tracks li a.play:hover{transform:translateY(-2px);background:var(--safran);color:var(--void)}
+.embed-slot{margin-top:2.6rem;border:2px dashed rgba(255,242,216,.35);border-radius:22px;padding:1.6rem}
+.embed-slot .mono{color:var(--safran);display:block;margin-bottom:.8rem}
+.embed-slot p{font-size:.93rem;color:rgba(255,242,216,.75);max-width:40rem}
+.embed-slot code{font-family:"Courier New",monospace;font-size:.85rem;background:rgba(0,0,0,.35);
+  padding:.15rem .4rem;border-radius:4px;color:var(--turkuaz)}
+
+
+
+/* ============ playground: the makam machine ============ */
+#playground{background:var(--void-deep);overflow:hidden;
+  padding:clamp(3.5rem,7vw,5.5rem) 0}
+#playground .eyebrow{background:var(--turkuaz);color:var(--void)}
+#playground h2 em{color:var(--turkuaz)}
+#playground .lede b{color:var(--safran);font-weight:700}
+.mm{margin-top:2.2rem;display:grid;gap:1rem}
+.mm-row{display:grid;gap:1.2rem;margin-bottom:1.3rem}
+@media(min-width:700px){.mm-row{grid-template-columns:1fr 1fr}}
+.mm-sub{display:block;font-family:"Rubik",system-ui,sans-serif;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;font-size:.57rem;
+  color:var(--turkuaz);margin-bottom:.6rem}
+@media(min-width:820px){.mm{grid-template-columns:1fr 1fr;align-items:start}}
+.mm-unit{border:2px solid rgba(255,242,216,.18);border-radius:24px;padding:1.3rem 1.4rem;
+  background:rgba(0,0,0,.24)}
+.mm-unit > .mono{color:var(--safran);display:block;margin-bottom:.9rem}
+.mm-unit .why{font-size:.88rem;color:rgba(255,242,216,.62);margin-bottom:1.1rem;font-weight:300}
+.mm-span{grid-column:1/-1}
+
+.mm-transport{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.8rem}
+.mm-btn{font-family:"Rubik",system-ui,sans-serif;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;font-size:.64rem;border:0;cursor:pointer;border-radius:999px;
+  padding:.85rem 1.5rem;background:rgba(255,242,216,.12);color:var(--krem);
+  transition:transform .18s ease,background .18s ease}
+.mm-btn:hover{transform:translateY(-2px)}
+#pg-play{background:var(--pembe);color:var(--krem);padding:1rem 2.1rem;font-size:.72rem}
+#pg-play.on{background:var(--safran);color:var(--void)}
+#pg-roll{background:var(--mor);color:var(--krem)}
+.mm-chips{display:flex;gap:.5rem;flex-wrap:wrap}
+.mm-chip{background:rgba(255,242,216,.1);border:2px solid transparent}
+.mm-chip[aria-pressed="true"]{background:var(--turkuaz);color:var(--void);border-color:var(--turkuaz)}
+.mm-chip small{display:block;font-weight:400;letter-spacing:.02em;text-transform:none;
+  font-size:.62rem;opacity:.78;margin-top:.15rem}
+
+.mm-knobs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.2rem}
+.mm-knob label{display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:.45rem;font-size:.95rem;font-weight:400}
+.mm-knob .val{font-weight:700;color:var(--turkuaz);font-size:.78rem}
+.mm-knob input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;
+  border-radius:3px;background:rgba(255,242,216,.22);outline:none}
+.mm-knob input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:21px;height:21px;
+  border-radius:50%;background:var(--safran);cursor:pointer;box-shadow:0 0 0 3px var(--void-deep)}
+.mm-knob input[type=range]::-moz-range-thumb{width:21px;height:21px;border:0;border-radius:50%;
+  background:var(--safran);cursor:pointer}
+
+/* cents ruler — makam degrees against the twelve notes of a piano */
+.mm-ruler{position:relative;height:118px;margin-top:.2rem}
+.mm-ruler .axis{position:absolute;left:0;right:0;top:58px;height:2px;background:rgba(255,242,216,.22)}
+.mm-ruler .et{position:absolute;top:46px;width:1px;height:14px;background:rgba(255,242,216,.34)}
+.mm-ruler .etlab{position:absolute;top:16px;transform:translateX(-50%);font-size:.57rem;
+  font-weight:500;color:rgba(255,242,216,.42)}
+.mm-ruler .deg{position:absolute;top:50px;width:3px;height:18px;border-radius:2px;
+  background:var(--pembe);transform:translateX(-1.5px);transition:background .12s,box-shadow .12s}
+.mm-ruler .deg.lit{background:var(--safran);
+  box-shadow:0 0 0 3px rgba(255,196,46,.3),0 0 18px var(--safran)}
+.mm-ruler .dev{position:absolute;top:76px;transform:translateX(-50%);font-size:.58rem;
+  font-weight:700;white-space:nowrap}
+.mm-ruler .dev.off{color:var(--pembe)} .mm-ruler .dev.on{color:rgba(255,242,216,.34)}
+.mm-legend{display:flex;gap:1.3rem;flex-wrap:wrap;margin-top:1.5rem;font-size:.78rem;
+  color:rgba(255,242,216,.62);font-weight:300}
+.mm-legend i{font-style:normal;display:inline-block;width:11px;height:11px;border-radius:3px;
+  vertical-align:-1px;margin-right:.35rem}
+.mm-mnote{margin-top:1rem;font-size:.92rem;color:rgba(255,242,216,.78);font-weight:300}
+
+/* riff grid */
+.mm-grid{display:flex;gap:3px;align-items:flex-end;min-height:92px;margin-top:.3rem}
+.mm-cell{flex:1;min-width:14px;border-radius:5px 5px 3px 3px;height:24px;
+  background:rgba(255,242,216,.08);transition:background .1s,transform .1s}
+.mm-cell.note{background:var(--pembe)}
+.mm-cell.gstart{background:var(--safran)}
+.mm-cell.now{transform:translateY(-5px);box-shadow:0 0 0 2px var(--krem)}
+
+/* keyboard */
+.mm-keys{display:grid;grid-template-columns:repeat(4,1fr);gap:.35rem;margin-top:.3rem}
+@media(min-width:560px){.mm-keys{grid-template-columns:repeat(8,1fr)}}
+.mm-key{min-height:78px;border-radius:12px;border:0;cursor:pointer;
+  background:rgba(255,242,216,.11);color:var(--krem);display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-end;padding-bottom:.55rem;gap:.15rem;
+  font-family:"Rubik",system-ui,sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.06em;
+  transition:background .1s,transform .1s}
+.mm-key.hit{background:var(--pembe);transform:translateY(2px)}
+.mm-key span{font-weight:400;font-size:.55rem;opacity:.7;letter-spacing:.02em}
+.mm-hint{margin-top:.9rem;font-size:.84rem;color:rgba(255,242,216,.58);font-weight:300}
+.mm-hint a{color:var(--turkuaz);text-decoration:underline;text-underline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* reveal */
+.rise{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.3,1)}
+.rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rise{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav id="scrub" aria-label="Sections">
+  <a href="#origin"><span>The contest</span></a>
+  <a href="#timeline"><span>1965&ndash;80</span></a>
+  <a href="#coup"><span>1980</span></a>
+  <a href="#figures"><span>The people</span></a>
+  <a href="#playground"><span>Makam</span></a>
+  <a href="#after"><span>Revival</span></a>
+  <a href="#listen"><span>Listen</span></a>
+</nav>
+<div id="playhead"></div>
+<div id="yearTag">1965</div>
+
+<header class="hero">
+  <div class="lightshow" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div>
+    <div class="blob b3"></div><div class="blob b4"></div>
+  </div>
+  <div class="rosette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="mono hero-kicker">Anatolian Rock · A field guide</span>
+    <h1>
+      <span class="arch" aria-label="Anadolu">
+        <span style="transform:rotate(-19deg);color:var(--pembe)" aria-hidden="true">A</span>
+        <span style="transform:rotate(-13.5deg);color:var(--portakal)" aria-hidden="true">N</span>
+        <span style="transform:rotate(-8deg);color:var(--safran)" aria-hidden="true">A</span>
+        <span style="transform:rotate(-2.5deg);color:var(--turkuaz)" aria-hidden="true">D</span>
+        <span style="transform:rotate(2.5deg);color:var(--turkuaz)" aria-hidden="true">O</span>
+        <span style="transform:rotate(8deg);color:var(--safran)" aria-hidden="true">L</span>
+        <span style="transform:rotate(13.5deg);color:var(--portakal)" aria-hidden="true">U</span>
+      </span>
+      <span class="rock">ROCK</span>
+    </h1>
+    <div class="hero-years">1965 — 1980</div>
+    <p class="thesis">A newspaper contest invented it. A military coup ended it. In the fifteen years between, a generation ran Anatolian folk melodies through fuzz pedals and <b>built a sound that existed nowhere else on earth.</b></p>
+    <p class="mono scroll-cue">Scroll ↓</p>
+  </div>
+</header>
+
+<svg class="wave" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,30 C150,52 250,0 400,18 C550,36 650,4 800,20 C950,36 1080,10 1200,26 L1200,52 L0,52 Z" fill="#FFC42E"/>
+</svg>
+
+<section id="origin">
+  <div class="wrap">
+    <span class="mono eyebrow">How it started</span>
+    <div class="origin-grid">
+      <div class="rise">
+        <h2>A contest,<br>not a <em>scene</em></h2>
+        <p class="lede">Most genres begin in a bar or a bedroom. This one began in a newsroom. In 1965 the Turkish daily <em>Hürriyet</em> launched the Altın Mikrofon — the Golden Microphone — and set an unusual condition for entry: take Turkish music somewhere new using the techniques, forms and instruments of the West.</p>
+        <p class="lede">Seventy-eight acts entered the first year. The paper pressed the top finishers onto 45s and sent them touring through Anatolian cities, where audiences voted by writing a band's name on their ticket stub and dropping it in a box. It ran four times and stopped. It was enough.</p>
+        <ul class="contest-list">
+          <li><span class="yr">1965</span><span>Yıldırım Gürses wins with a crooner's ballad — the least modern thing entered. Second place goes to Mavi Işıklar, and that is where the future is.</span></li>
+          <li><span class="yr">1966</span><span>Silüetler take first, Mavi Işıklar second again.</span></li>
+          <li><span class="yr">1967</span><span>Cem Karaca ve Apaşlar place second.</span></li>
+          <li><span class="yr">1968</span><span>The final edition. Haramiler second, Moğollar third, the Erkin Koray Dörtlüsü fourth. Nearly the whole first generation, in one room.</span></li>
+        </ul>
+      </div>
+      <aside class="clipping rise">
+        <span class="mono">Hürriyet, 1965 — stated aim</span>
+        <blockquote>To give Turkish music a new direction, by drawing on the technical range and forms of Western music and playing it on Western instruments.</blockquote>
+        <cite>Paraphrased from the paper's announcement of the competition.</cite>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<svg class="wave flip" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,30 C150,52 250,0 400,18 C550,36 650,4 800,20 C950,36 1080,10 1200,26 L1200,52 L0,52 Z" fill="#12061F"/>
+</svg>
+
+<section id="timeline">
+  <div class="lightshow" aria-hidden="true"><div class="blob b2" style="opacity:.3"></div><div class="blob b3" style="opacity:.3"></div></div>
+  <div class="wrap">
+    <span class="mono eyebrow">The fifteen years</span>
+    <h2>Two clocks<br>running <em>at once</em></h2>
+    <p class="lede">The music and the politics are the same story told twice. Read one column and it's a golden age. Read the other and it's a country coming apart. They meet in September 1980.</p>
+
+    <div class="track-key mono">
+      <span class="key-m">The music</span>
+      <span class="key-p">The country</span>
+    </div>
+
+    <div class="tl">
+      <div class="tl-fill" aria-hidden="true"></div>
+      <div class="beat rise"><span class="yr">1965</span><h3>Altın Mikrofon</h3><p>Hürriyet launches the contest that names the ambition out loud.</p></div>
+      <div class="beat pol rise"><span class="yr">Early 60s</span><h3>A wider political floor</h3><p>The 1961 constitution opens space for the left and for organised labour. Campuses politicise fast, and "turn toward the people" replaces plain admiration of the West.</p></div>
+      <div class="beat rise"><span class="yr">1967</span><h3>Moğollar form in Istanbul</h3><p>Five musicians set out to write pop in an Anatolian idiom rather than translate someone else's.</p></div>
+      <div class="beat rise"><span class="yr">1970</span><h3>Moğollar leave for Paris</h3><p>They go without a singer, find record company numbers in a café phone book, and land a deal.</p></div>
+      <div class="beat rise"><span class="yr">1971</span><h3>The genre gets a name and a prize</h3><p><em>Danses et Rythmes de la Turquie</em> — instrumental, recorded in France, released at home as <em>Anadolu Pop</em>. It takes the Grand Prix du Disque from the Académie Charles Cros, an award previously given to Hendrix and Pink Floyd.</p></div>
+      <div class="beat pol rise"><span class="yr">12 March 1971</span><h3>Coup by memorandum</h3><p>The military forces the government out by letter rather than tanks. Martial law follows in much of the country.</p></div>
+      <div class="beat rise"><span class="yr">1971</span><h3>Selda Bağcan starts recording</h3><p>Six singles in her final year at university — folk songs carried by an unusually direct voice and a guitar. National fame almost immediately.</p></div>
+      <div class="beat rise"><span class="yr">1972</span><h3>Kurtalan Ekspres</h3><p>Barış Manço assembles the band he will keep for the rest of his career, named after a train that ran from Istanbul to a town in the southeast.</p></div>
+      <div class="beat rise"><span class="yr">1974</span><h3>Elektronik Türküler</h3><p>Erkin Koray's first album of new material, and the record most people mean when they say Anatolian rock: electric saz, microtonal melody, and a rhythm section that doesn't apologise.</p></div>
+      <div class="beat rise"><span class="yr">1975</span><h3>2023</h3><p>Manço's first real LP. The title track is written for a centenary still fifty years away; "Baykoca Destanı" is among the first Turkish rock operas.</p></div>
+      <div class="beat pol rise"><span class="yr">1 May 1977</span><h3>Taksim Square</h3><p>Shots are fired into a May Day crowd of hundreds of thousands. Dozens die. Street violence between left and right becomes routine.</p></div>
+      <div class="beat rise"><span class="yr">1977</span><h3>Tutkusu</h3><p>Koray pushes further into progressive territory, records partly in the Netherlands, and tours Europe.</p></div>
+      <div class="beat rise"><span class="yr">1978</span><h3>Edirdahan</h3><p>Cem Karaca names his new band for the country's westernmost and easternmost provinces. By now his lyrics are explicitly about class, and everyone knows it.</p></div>
+      <div class="beat pol rise"><span class="yr">1978–79</span><h3>Toward the edge</h3><p>Sectarian killings, an economy in crisis, a parliament unable to function.</p></div>
+      <div class="beat rise"><span class="yr">Early 1979</span><h3>Karaca goes to Cologne</h3><p>He leaves on business. He will not be able to come back for eight years.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="coup">
+  <div class="wrap">
+    <span class="mono eyebrow">The end</span>
+    <p class="date">12 · 09 · 1980</p>
+    <h2>The music didn't fade out.<br>It was switched off.</h2>
+    <p class="lede">General Kenan Evren takes power. Parties are shut, and writers, journalists and musicians are among the hundreds of thousands detained in the years that follow. The genre had spent fifteen years learning to say something. Saying it was now the offence.</p>
+    <ul class="aftermath">
+      <li><span class="who">Cem Karaca</span>Already in West Germany when the coup comes, and wanted at home on charges tied to his lyrics. He does not return. His father dies without him there. On 6 January 1983 his citizenship is revoked. An amnesty under Turgut Özal finally brings him home in 1987.</li>
+      <li><span class="who">Selda Bağcan</span>Imprisoned three times between 1981 and 1984 — the first a forty-day stretch in Metris military prison over a recording. She is acquitted in every case. Her passport is held until 1987, so she cannot tour, and misses an invitation to WOMAD.</li>
+      <li><span class="who">Erkin Koray</span>Spends much of the period abroad — the Netherlands, Germany, eventually Canada — still recording, increasingly at a distance from the scene he started.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="figures">
+  <div class="lightshow" aria-hidden="true"><div class="blob b1" style="opacity:.28"></div><div class="blob b3" style="opacity:.28"></div></div>
+  <div class="wrap">
+    <span class="mono eyebrow">Who to know</span>
+    <h2>Eight people<br>and one <em>band</em></h2>
+    <p class="lede">Not a ranking. A way in — each with the record worth starting on.</p>
+    <div class="figs">
+
+      <article class="fig rise">
+        <!-- swap for a drawing: <span class="sleeve"><img src="portraits/erkin-koray.png" alt=""></span> -->
+        <span class="sleeve" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#1B0A2E"/><g class="spin" style="transform-origin:50px 50px"><circle cx="50" cy="50" r="34" fill="none" stroke="#FFC42E" stroke-width="1.5"/><circle cx="50" cy="50" r="26" fill="none" stroke="#FFC42E" stroke-width="1.5"/><circle cx="50" cy="50" r="18" fill="none" stroke="#FFC42E" stroke-width="1.5"/></g><rect x="46" y="8" width="8" height="52" rx="3" fill="#00C6B4"/><circle cx="50" cy="68" r="15" fill="#FF3E7F"/><path d="M50 60 L44 72 L52 72 L46 84" fill="none" stroke="#FFF2D8" stroke-width="2.6" stroke-linecap="round"/></svg><span class="label"></span></span>
+        <h3>Erkin Koray</h3><span class="role">1941–2023 · The first</span>
+        <p>Playing rock in Istanbul since the late 1950s, before there was an audience for it — he was reportedly attacked in the street over his hair. Credited with electrifying the bağlama, which is the single technical decision the whole genre rests on. Stubborn, prolific, never quite absorbed into anyone else's scene. Died in Toronto in 2023.</p>
+        <p class="track">Start with <b>Elektronik Türküler</b> (1974) — the track "Cemalim".</p>
+      </article>
+
+      <article class="fig rise">
+        <!-- swap for a drawing: <span class="sleeve"><img src="portraits/mo-ollar.png" alt=""></span> -->
+        <span class="sleeve" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#1B0A2E"/><g class="spin" style="transform-origin:50px 50px"><circle cx="50" cy="50" r="32" fill="none" stroke="#00C6B4" stroke-width="9" stroke-dasharray="9 7"/></g><circle cx="50" cy="50" r="18" fill="#FFC42E"/><path d="M22 78 Q50 42 78 22" fill="none" stroke="#FF3E7F" stroke-width="3.4" stroke-linecap="round"/><path d="M69 22 L78 22 L78 31" fill="none" stroke="#FF3E7F" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="label"></span></span>
+        <h3>Moğollar</h3><span class="role">Formed 1967 · The exporters</span>
+        <p>The band that proved the idea worked at album length, and the first to be taken seriously outside Turkey. Their Paris record gave the movement its Turkish name — <em>Anadolu Pop</em> — and a French prize that made everyone at home pay attention. Still performing, more than fifty years on.</p>
+        <p class="track">Start with <b>Danses et Rythmes de la Turquie</b> (1971) — the track "Lorke".</p>
+      </article>
+
+      <article class="fig rise">
+        <!-- swap for a drawing: <span class="sleeve"><img src="portraits/bar-man-o.png" alt=""></span> -->
+        <span class="sleeve" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#1B0A2E"/><g class="spin" style="transform-origin:50px 50px"><path d="M50 50 L50 6 A44 44 0 0 1 81 19 Z" fill="#FF3E7F"/><path d="M50 50 L81 19 A44 44 0 0 1 94 50 Z" fill="#FFC42E"/><path d="M50 50 L94 50 A44 44 0 0 1 81 81 Z" fill="#00C6B4"/><path d="M50 50 L81 81 A44 44 0 0 1 50 94 Z" fill="#FF6B1A"/><path d="M50 50 L50 94 A44 44 0 0 1 19 81 Z" fill="#8B3FEA"/><path d="M50 50 L19 81 A44 44 0 0 1 6 50 Z" fill="#FF3E7F"/><path d="M50 50 L6 50 A44 44 0 0 1 19 19 Z" fill="#FFC42E"/><path d="M50 50 L19 19 A44 44 0 0 1 50 6 Z" fill="#00C6B4"/></g><circle cx="50" cy="50" r="15" fill="#1B0A2E"/><circle cx="50" cy="50" r="9" fill="#FFF2D8"/></svg><span class="label"></span></span>
+        <h3>Barış Manço</h3><span class="role">1943–1999 · The one everyone loved</span>
+        <p>Long hair, heavy rings, and a gift for writing songs that were ambitious and singable at the same time. He made a rock opera and a nursery-rhyme hit in the same decade. In 1988 he began a television programme for children that ran for ten years and turned him into something closer to a national uncle than a rock star.</p>
+        <p class="track">Start with <b>2023</b> (1975) — the track "Baykoca Destanı".</p>
+      </article>
+
+      <article class="fig rise">
+        <!-- swap for a drawing: <span class="sleeve"><img src="portraits/cem-karaca.png" alt=""></span> -->
+        <span class="sleeve" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#1B0A2E"/><path d="M14 50 L40 34 L40 66 Z" fill="#FFC42E"/><rect x="40" y="38" width="14" height="24" fill="#FF6B1A"/><g class="spin" style="transform-origin:50px 50px"><path d="M62 50 A14 14 0 0 0 62 40" fill="none" stroke="#FF3E7F" stroke-width="3.4" stroke-linecap="round"/><path d="M70 54 A22 22 0 0 0 70 36" fill="none" stroke="#FF3E7F" stroke-width="3.4" stroke-linecap="round"/><path d="M78 58 A30 30 0 0 0 78 32" fill="none" stroke="#00C6B4" stroke-width="3.4" stroke-linecap="round"/></g><rect x="14" y="76" width="72" height="4" fill="#FFF2D8"/></svg><span class="label"></span></span>
+        <h3>Cem Karaca</h3><span class="role">1945–2004 · The dangerous one</span>
+        <p>Born to actor parents, Armenian and Azerbaijani. He cycled through bands — Apaşlar, Kardaşlar, Dervişan, Edirdahan — and called himself a rock ozan, a rock bard. He wrote about workers and apprentices with a theatrical delivery that made the politics land. It cost him his citizenship.</p>
+        <p class="track">Start with the singles era — the track "Tamirci Çırağı".</p>
+      </article>
+
+      <article class="fig rise">
+        <!-- swap for a drawing: <span class="sleeve"><img src="portraits/selda-ba-can.png" alt=""></span> -->
+        <span class="sleeve" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#1B0A2E"/><g class="spin" style="transform-origin:50px 46px"><circle cx="50" cy="46" r="30" fill="none" stroke="#FFC42E" stroke-width="2.2" stroke-dasharray="4 6"/><circle cx="50" cy="46" r="21" fill="none" stroke="#FFC42E" stroke-width="2.2" stroke-dasharray="4 6"/></g><circle cx="50" cy="46" r="12" fill="#FF3E7F"/><g stroke="#00C6B4" stroke-width="4" stroke-linecap="round"><line x1="26" y1="14" x2="26" y2="86"/><line x1="42" y1="14" x2="42" y2="86"/><line x1="58" y1="14" x2="58" y2="86"/><line x1="74" y1="14" x2="74" y2="86"/></g></svg><span class="label"></span></span>
+        <h3>Selda Bağcan</h3><span class="role">b. 1948 · The one who paid</span>
+        <p>An engineering physics student who became the voice the left sang along to. Folk repertoire, electric arrangements, and a delivery with no ornament in it. The junta jailed her three times and lost every case, then simply kept her passport. Decades later her recordings turned up sampled on hip-hop records, which is its own kind of vindication.</p>
+        <p class="track">Start with <b>Selda</b> (1976) — the track "Koçero".</p>
+      </article>
+
+      <article class="fig rise">
+        <!-- swap for a drawing: <span class="sleeve"><img src="portraits/fikret-k-z-lok.png" alt=""></span> -->
+        <span class="sleeve" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#1B0A2E"/><path d="M8 62 Q28 30 50 62 Q72 94 92 42" fill="none" stroke="#FFC42E" stroke-width="2.4" stroke-linecap="round"/><g class="spin" style="transform-origin:50px 50px"><circle cx="50" cy="50" r="24" fill="none" stroke="#FF3E7F" stroke-width="1.4"/></g><circle cx="50" cy="50" r="7" fill="#00C6B4"/></svg><span class="label"></span></span>
+        <h3>Fikret Kızılok</h3><span class="role">1946–2001 · The quiet one</span>
+        <p>Came up through the same Altın Mikrofon years and then moved steadily away from volume, toward songwriting stripped back to voice and saz. The introvert's entry point into a loud genre.</p>
+        <p class="track">Start with the track <b>"Not Defterimden"</b>.</p>
+      </article>
+
+      <article class="fig rise">
+        <!-- swap for a drawing: <span class="sleeve"><img src="portraits/h-rel.png" alt=""></span> -->
+        <span class="sleeve" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#1B0A2E"/><g class="spin" style="transform-origin:50px 52px"><circle cx="50" cy="30" r="21" fill="#FF3E7F" opacity=".72"/><circle cx="32" cy="62" r="21" fill="#00C6B4" opacity=".72"/><circle cx="68" cy="62" r="21" fill="#FFC42E" opacity=".72"/></g><circle cx="50" cy="52" r="6" fill="#FFF2D8"/></svg><span class="label"></span></span>
+        <h3>Üç Hürel</h3><span class="role">Three brothers · The craftsmen</span>
+        <p>Onur, Haldun and Feridun Hürel, working as a trio with a homemade approach to instruments and effects. Warmer and stranger than the big names, and a favourite of collectors for exactly that reason.</p>
+        <p class="track">Start with the track <b>"Ağlarsa Anam Ağlar"</b>.</p>
+      </article>
+
+      <article class="fig rise">
+        <!-- swap for a drawing: <span class="sleeve"><img src="portraits/edip-akbayram.png" alt=""></span> -->
+        <span class="sleeve" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#1B0A2E"/><g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 40 L50 20 L84 40" stroke="#FF3E7F"/><path d="M16 58 L50 38 L84 58" stroke="#FFC42E"/><path d="M16 76 L50 56 L84 76" stroke="#00C6B4"/></g><g class="spin" style="transform-origin:50px 50px"><circle cx="50" cy="50" r="40" fill="none" stroke="#FF6B1A" stroke-width="1.4" stroke-dasharray="3 9"/></g></svg><span class="label"></span></span>
+        <h3>Edip Akbayram</h3><span class="role">b. 1950 · The second wave</span>
+        <p>Arrived through a later revival of the contest format and carried the protest strand of the music into the late seventies with a heavier, more direct band sound.</p>
+        <p class="track">Start with the track <b>"Aldırma Gönül"</b>.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,26 C120,4 260,44 400,26 C540,8 660,46 800,28 C940,10 1080,42 1200,24 L1200,52 L0,52 Z" fill="#12061F"/>
+</svg>
+
+<section id="playground">
+  <div class="lightshow" aria-hidden="true"><div class="blob b2" style="opacity:.22"></div><div class="blob b4" style="opacity:.22"></div></div>
+  <div class="wrap">
+    <span class="mono eyebrow">Hands on</span>
+    <h2>The notes between<br>the <em>keys</em></h2>
+    <p class="lede">Every pitch here is tuned to Turkish makam intervals, which sit in the gaps between the twelve notes of a piano. The riff locks and repeats; the fuzz, phaser and drum kit are the electrification the Altın Mikrofon was asking for. <b>Press play, then move the fuzz.</b></p>
+
+    <div class="mm">
+      <div class="mm-unit rise mm-span">
+        <span class="mono">The instrument</span>
+        <div class="mm-transport">
+          <button class="mm-btn" id="pg-play" type="button">&#9654; Play</button>
+          <button class="mm-btn" id="pg-roll" type="button">&#8635; New riff</button>
+        </div>
+        <div class="mm-row">
+          <div>
+            <span class="mm-sub">Makam &mdash; the scale</span>
+            <div class="mm-chips" id="pg-makams" role="group" aria-label="Choose a makam"></div>
+          </div>
+          <div>
+            <span class="mm-sub">Usul &mdash; the limping meter, on a rock kit</span>
+            <div class="mm-chips" id="pg-usuls" role="group" aria-label="Choose a rhythm"></div>
+          </div>
+        </div>
+        <div class="mm-knobs">
+          <div class="mm-knob"><label for="pg-fuzz">Fuzz <span class="val" id="pg-vfuzz"></span></label><input type="range" id="pg-fuzz" min="0" max="100" value="76"></div>
+          <div class="mm-knob"><label for="pg-phase">Phaser <span class="val" id="pg-vphase"></span></label><input type="range" id="pg-phase" min="0" max="100" value="55"></div>
+          <div class="mm-knob"><label for="pg-bpm">Tempo <span class="val" id="pg-vbpm"></span></label><input type="range" id="pg-bpm" min="70" max="190" value="138"></div>
+        </div>
+      </div>
+
+      <div class="mm-unit rise mm-span">
+        <span class="mono">Where the notes fall</span>
+        <div class="mm-ruler" id="pg-ruler" aria-hidden="true"></div>
+        <p class="sr-only" id="pg-rulerText"></p>
+        <div class="mm-legend">
+          <span><i style="background:rgba(255,242,216,.34)"></i>the twelve notes of a piano</span>
+          <span><i style="background:var(--pembe)"></i>where this makam actually falls</span>
+        </div>
+        <p class="mm-mnote" id="pg-note"></p>
+      </div>
+
+      <div class="mm-unit rise">
+        <span class="mono">The riff</span>
+        <p class="why">Gold is the accented first beat of each group, pink the other notes, gaps are rests. Height is pitch.</p>
+        <div class="mm-grid" id="pg-grid" aria-hidden="true"></div>
+      </div>
+
+      <div class="mm-unit rise">
+        <span class="mono">Play it yourself</span>
+        <p class="why">Keyboard row <b>A&#8202;S&#8202;D&#8202;F&#8202;G&#8202;H&#8202;J&#8202;K</b>, or click. Hold <b>Shift</b> for the octave above.</p>
+        <div class="mm-keys" id="pg-keys" role="group" aria-label="Makam degrees"></div>
+      </div>
+    </div>
+    <p class="mm-hint">Sound stops when you scroll away. Every control, including wah, tremolo, reverb and the drum mix, is in the <a href="makam-machine.html">full version</a>.</p>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,26 C120,4 260,44 400,26 C540,8 660,46 800,28 C940,10 1080,42 1200,24 L1200,52 L0,52 Z" fill="#8B3FEA"/>
+</svg>
+
+<section id="after">
+  <div class="wrap">
+    <span class="mono eyebrow">Afterlife</span>
+    <h2>It came back<br><em>from outside</em></h2>
+    <p class="lede">The records kept circulating — through crate diggers, reissue labels and samples — and the sound returned to Istanbul partly by way of people who had found it somewhere else. <b>The revival is now larger internationally than the original ever was.</b></p>
+    <div class="revival">
+      <div class="rev rise"><span class="yr">1996</span><h3>BaBa ZuLa</h3><p>Founded in Istanbul, folding dub and electronics into the saz. The bridge between the old scene and whatever came next.</p></div>
+      <div class="rev rise"><span class="yr">2014→</span><h3>Gaye Su Akyol</h3><p>Painter and anthropologist turned bandleader. Psychedelia, surf and post-punk under an unmistakably Anatolian melodic sense.</p></div>
+      <div class="rev rise"><span class="yr">2016→</span><h3>Altın Gün</h3><p>Started in Amsterdam by a Dutch bassist who advertised for Turkish musicians. Their 2019 album <em>Gece</em> was nominated for a Grammy.</p></div>
+      <div class="rev rise"><span class="yr">Ongoing</span><h3>Derya Yıldırım &amp; Grup Şimşek</h3><p>Hamburg-based, and the clearest evidence that the diaspora is now a centre of the music rather than a margin.</p></div>
+    </div>
+  </div>
+</section>
+
+<svg class="wave flip" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,26 C120,4 260,44 400,26 C540,8 660,46 800,28 C940,10 1080,42 1200,24 L1200,52 L0,52 Z" fill="#12061F"/>
+</svg>
+
+<section id="listen">
+  <div class="wrap">
+    <span class="mono eyebrow">If you only have an hour</span>
+    <h2>A starting<br><em>sequence</em></h2>
+    <p class="lede">Ordered to be played straight through, not by importance.</p>
+
+    <span class="mono side-label">Side A — the golden years</span>
+    <ol class="tracks">
+      <li><span class="n">01</span><span><span class="ti">Cemalim</span><span class="by">Erkin Koray</span><span class="note">The riff that makes the case in eight seconds.</span><a class="play" href="https://www.youtube.com/results?search_query=Erkin+Koray+Cemalim" target="_blank" rel="noopener">▶ Listen</a></span></li>
+      <li><span class="n">02</span><span><span class="ti">Lorke</span><span class="by">Moğollar</span><span class="note">A folk tune, instrumental, completely rearranged.</span><a class="play" href="https://www.youtube.com/results?search_query=Moğollar+Lorke" target="_blank" rel="noopener">▶ Listen</a></span></li>
+      <li><span class="n">03</span><span><span class="ti">Tamirci Çırağı</span><span class="by">Cem Karaca</span><span class="note">A mechanic's apprentice in love with the boss's daughter. Class politics as a pop song.</span><a class="play" href="https://www.youtube.com/results?search_query=Cem+Karaca+Tamirci+Çırağı" target="_blank" rel="noopener">▶ Listen</a></span></li>
+      <li><span class="n">04</span><span><span class="ti">Baykoca Destanı</span><span class="by">Barış Manço &amp; Kurtalan Ekspres</span><span class="note">The ambitious one. Sit with it.</span><a class="play" href="https://www.youtube.com/results?search_query=Barış+Manço+Baykoca+Destanı" target="_blank" rel="noopener">▶ Listen</a></span></li>
+      <li><span class="n">05</span><span><span class="ti">Ağlarsa Anam Ağlar</span><span class="by">Üç Hürel</span><span class="note">Homemade and hypnotic.</span><a class="play" href="https://www.youtube.com/results?search_query=Üç+Hürel+Ağlarsa+Anam+Ağlar" target="_blank" rel="noopener">▶ Listen</a></span></li>
+    </ol>
+
+    <span class="mono side-label">Side B — the edge and after</span>
+    <ol class="tracks">
+      <li><span class="n">06</span><span><span class="ti">Koçero</span><span class="by">Selda Bağcan</span><span class="note">The recording that put her in Metris.</span><a class="play" href="https://www.youtube.com/results?search_query=Selda+Bağcan+Koçero" target="_blank" rel="noopener">▶ Listen</a></span></li>
+      <li><span class="n">07</span><span><span class="ti">Aldırma Gönül</span><span class="by">Edip Akbayram</span><span class="note">Words by a poet who wrote them from prison.</span><a class="play" href="https://www.youtube.com/results?search_query=Edip+Akbayram+Aldırma+Gönül" target="_blank" rel="noopener">▶ Listen</a></span></li>
+      <li><span class="n">08</span><span><span class="ti">Not Defterimden</span><span class="by">Fikret Kızılok</span><span class="note">The comedown.</span><a class="play" href="https://www.youtube.com/results?search_query=Fikret+Kızılok+Not+Defterimden" target="_blank" rel="noopener">▶ Listen</a></span></li>
+      <li><span class="n">09</span><span><span class="ti">Goca Dünya</span><span class="by">Altın Gün</span><span class="note">The same music, fifty years and two thousand kilometres later.</span><a class="play" href="https://www.youtube.com/results?search_query=Altın+Gün+Goca+Dünya" target="_blank" rel="noopener">▶ Listen</a></span></li>
+    </ol>
+
+    <div class="embed-slot">
+      <span class="mono">Sound — one thing left to do</span>
+      <p>The Listen buttons open a search, which works but isn't beautiful. For real playback, make a public Spotify playlist with these nine tracks, then paste its embed here — replace <code>PLAYLIST_ID</code> below with the ID from the playlist's share link.</p>
+      <p style="margin-top:.9rem"><code>&lt;iframe src="https://open.spotify.com/embed/playlist/PLAYLIST_ID" width="100%" height="420" frameborder="0" allow="encrypted-media"&gt;&lt;/iframe&gt;</code></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">Notes on sources</span>
+    <p>Dates and events here are drawn from published accounts of the Altın Mikrofon competition, artist discographies, and reporting on the 1980 coup and its consequences for musicians. Where accounts disagree — and on release years for early singles they often do — the more conservative claim is used, or the date is left off.</p>
+    <p>Turkish spellings are kept as they are. Track picks are opinion.</p>
+  </div>
+</footer>
+
+
+
+<script>
+(function(){
+  var ph=document.getElementById('playhead'),tag=document.getElementById('yearTag');
+  var tlSec=document.getElementById('timeline');
+  var beats=[].slice.call(document.querySelectorAll('.beat .yr')),ticking=false;
+  function update(){
+    var h=document.documentElement,max=h.scrollHeight-h.clientHeight;
+    ph.style.width=(max>0?(h.scrollTop/max)*100:0)+'%';
+    var mid=window.innerHeight*0.5,cur=null;
+    for(var i=0;i<beats.length;i++){if(beats[i].getBoundingClientRect().top<mid)cur=beats[i].textContent;}
+    // only while the timeline itself is on screen - otherwise the badge follows
+    // the reader into later sections still showing the last date it saw
+    var tlr=tlSec?tlSec.getBoundingClientRect():null;
+    var inTl=tlr&&tlr.top<window.innerHeight&&tlr.bottom>0;
+    if(cur&&inTl){tag.textContent=cur;tag.classList.add('on');}else{tag.classList.remove('on');}
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){window.requestAnimationFrame(update);ticking=true;}},{passive:true});
+  update();
+
+  /* scrubber: segment widths track each section's share of the page, and
+     the current segment is marked as you pass through it */
+  var scrub=document.getElementById('scrub');
+  var segs=scrub?[].slice.call(scrub.querySelectorAll('a')):[];
+  var secs=segs.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function sizeScrub(){
+    var tot=0,hs=secs.map(function(el){var h=el?el.offsetHeight:0;tot+=h;return h;});
+    if(!tot) return;
+    segs.forEach(function(a,i){a.style.flex='0 0 '+(hs[i]/tot*100)+'%';});
+  }
+  function markScrub(){
+    var mid=window.innerHeight*0.35,cur=-1;
+    secs.forEach(function(el,i){
+      if(!el) return;
+      var r=el.getBoundingClientRect();
+      if(r.top<=mid&&r.bottom>mid) cur=i;
+    });
+    segs.forEach(function(a,i){
+      if(i===cur) a.setAttribute('aria-current','true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  sizeScrub(); markScrub();
+  window.addEventListener('resize',function(){sizeScrub();markScrub();});
+  window.addEventListener('load',sizeScrub);
+  window.addEventListener('scroll',function(){window.requestAnimationFrame(markScrub);},{passive:true});
+
+
+  // timeline: draw the spine and light each beat as it is passed
+  var tl=document.querySelector('.tl'),fill=document.querySelector('.tl-fill');
+  var allBeats=[].slice.call(document.querySelectorAll('.beat'));
+  function timeline(){
+    if(!tl||!fill)return;
+    var r=tl.getBoundingClientRect(),anchor=window.innerHeight*0.62;
+    var p=(anchor-r.top)/r.height;
+    fill.style.height=Math.max(0,Math.min(1,p))*100+'%';
+    allBeats.forEach(function(b){
+      if(b.getBoundingClientRect().top<anchor)b.classList.add('lit');
+    });
+  }
+  window.addEventListener('scroll',function(){window.requestAnimationFrame(timeline);},{passive:true});
+  window.addEventListener('resize',timeline);
+  timeline();
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},
+      {threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+    document.querySelectorAll('.rise').forEach(function(el){io.observe(el);});
+  }else{document.querySelectorAll('.rise').forEach(function(el){el.classList.add('in');});}
+})();
+
+/* ============================================================
+   THE MAKAM MACHINE
+   Makam intervals are Holdrian commas (1200/53 c) per Arel-Ezgi-
+   Uzdilek: each tetrachord sums to 22 commas (a fourth), each
+   pentachord to 31 (a fifth).
+   The string is Karplus-Strong. Its loop filter averages delays of
+   N and N-1, so the true period is N-(1-a), not N; without
+   correcting for that, notes run up to 14 cents flat in the top
+   octave, which on this page would be larger than the intervals
+   being demonstrated. Built at the integer length, corrected
+   exactly with playbackRate. Residual error 0.33 cents.
+   ============================================================ */
+(function(){
+  var COMMA=1200/53;
+  function build(groups){
+    var out=[0],run=0;
+    groups.forEach(function(g){g.forEach(function(st){run+=st;out.push(run*COMMA);});});
+    return out;
+  }
+  var MAKAMS=[
+    {id:'hicaz',name:'Hicaz',gloss:'the iconic one',groups:[[5,12,5],[9,8,5,9]],
+     note:'The second degree lands 13 cents above a piano’s flat second and the third 15 cents below its major third. Those two neighbouring notes are what people are hearing when they call this music exotic.'},
+    {id:'usak',name:'Uşşak',gloss:'the folk default',groups:[[8,5,9],[9,4,9,9]],
+     note:'The second degree is a neutral second. Theory puts it at 181 cents and players bend it flatter in practice, nearer 150. The distance between the written and the played value has been argued about for a century.'},
+    {id:'kurdi',name:'Kürdi',gloss:'the dark one',groups:[[5,9,8],[9,4,9,9]],
+     note:'The closest of the four to something Western, roughly Phrygian, which is why it travelled easily. Through a fuzz pedal it reads as rock almost immediately.'},
+    {id:'huseyni',name:'Hüseyni',gloss:'Selda territory',groups:[[8,9,5],[9,8,5,9]],
+     note:'The workhorse of Anatolian folk repertoire, so it sits under a great many of the songs these bands electrified. Neutral second, then a wide whole tone.'}
+  ];
+  MAKAMS.forEach(function(m){m.cents=build(m.groups);});
+  var USULS=[
+    {id:'a9',name:'9/8',gloss:'2+2+2+3 · karşılama',groups:[2,2,2,3],kick:[0,4,6],snare:[2,7]},
+    {id:'d7',name:'7/8',gloss:'3+2+2',groups:[3,2,2],kick:[0,5],snare:[3]},
+    {id:'c10',name:'10/8',gloss:'3+2+2+3 · curcuna',groups:[3,2,2,3],kick:[0,5],snare:[3,7]},
+    {id:'r4',name:'4/4',gloss:'the straight one',groups:[2,2,2,2],kick:[0,4],snare:[2,6]}
+  ];
+  var ET=['1','♭2','2','♭3','3','4','♭5','5','♭6','6','♭7','7','8'];
+  var MOTIFS=[
+    [0,1,2,1,0],[2,1,0,-1,0],[0,2,1,0,-2],[4,3,2,1,0],[0,1,2,3,2,1],
+    [1,0,-1,0,1,2],[0,4,3,2,1,0],[3,2,1,2,0],[0,1,2,1,2,3],[2,3,2,1,0,-1]
+  ];
+
+  var SAZ=165;                       /* E3 - riffs sit low, where fuzz works */
+  var FIXED={wah:.42,trem:.18,rev:.34,bright:.66,slide:.45,organ:.30,drums:.72};
+  var S={makam:MAKAMS[0],usul:USULS[0],fuzz:.76,phase:.55,bpm:138,playing:false};
+
+  var AC=null,master,sazIn,shaper,postLP,postHP,wah,wahDepth,phIn,phWet,phDry,phDepth,
+      tremGain,tremDepth,tremLFO,conv,wetGain,organGain,organOsc=[],drumBus,bassBus;
+  var pluckCache={},riff=null,degEls=[],cellEls=[],nextT=0,stepN=0,timer=null,cycles=0;
+  var $=function(id){return document.getElementById(id);};
+
+  function fuzzCurve(amt){
+    var n=2048,c=new Float32Array(n),drive=1+amt*70,bias=.14*amt,dc=Math.tanh(drive*bias);
+    for(var i=0;i<n;i++){
+      var x=i*2/(n-1)-1;
+      var soft=Math.tanh(drive*(x+bias))-dc;
+      var hard=Math.max(-.92,Math.min(.92,drive*x*.32));
+      c[i]=Math.max(-1,Math.min(1,soft*.78+hard*.22));
+    }
+    return c;
+  }
+  function springIR(sec){
+    var sr=AC.sampleRate,len=Math.floor(sr*sec),b=AC.createBuffer(2,len,sr);
+    for(var ch=0;ch<2;ch++){
+      var d=b.getChannelData(ch),i;
+      for(i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.7)*.34;
+      [0.011,0.026,0.044,0.068,0.097].forEach(function(tp,k){
+        var st=Math.floor(tp*sr*(1+ch*.07)),dur=Math.floor(.032*sr);
+        for(var j=0;j<dur&&st+j<len;j++){
+          var f=1700+(j/dur)*2900;
+          d[st+j]+=Math.sin(2*Math.PI*f*(j/sr))*Math.pow(1-j/dur,2.2)*(.52/(k+1));
+        }
+      });
+    }
+    return b;
+  }
+
+  function initAudio(){
+    if(AC) return;
+    AC=new (window.AudioContext||window.webkitAudioContext)();
+    master=AC.createGain(); master.gain.value=.82; master.connect(AC.destination);
+
+    conv=AC.createConvolver(); conv.buffer=springIR(2.1);
+    var rbp=AC.createBiquadFilter(); rbp.type='bandpass'; rbp.frequency.value=1300; rbp.Q.value=.7;
+    wetGain=AC.createGain(); wetGain.gain.value=FIXED.rev*.9;
+    conv.connect(rbp); rbp.connect(wetGain); wetGain.connect(master);
+
+    tremGain=AC.createGain();
+    tremLFO=AC.createOscillator(); tremLFO.type='sine'; tremLFO.frequency.value=4.9;
+    tremDepth=AC.createGain(); tremDepth.gain.value=FIXED.trem*.4;
+    tremLFO.connect(tremDepth); tremDepth.connect(tremGain.gain); tremLFO.start();
+    tremGain.connect(master); tremGain.connect(conv);
+
+    /* phaser: four modulated allpass stages against dry. ~10-17 dB notch sweep. */
+    phIn=AC.createGain(); phWet=AC.createGain(); phDry=AC.createGain();
+    var phLFO=AC.createOscillator(); phLFO.type='sine'; phLFO.frequency.value=.38;
+    phDepth=AC.createGain(); phDepth.gain.value=S.phase*900;
+    phLFO.connect(phDepth); phLFO.start();
+    var node=phIn;
+    for(var i=0;i<4;i++){
+      var ap=AC.createBiquadFilter(); ap.type='allpass';
+      ap.frequency.value=280+i*430; ap.Q.value=.7;
+      phDepth.connect(ap.frequency); node.connect(ap); node=ap;
+    }
+    phWet.gain.value=S.phase*.75; phDry.gain.value=1;
+    node.connect(phWet); phIn.connect(phDry);
+    phWet.connect(tremGain); phDry.connect(tremGain);
+
+    wah=AC.createBiquadFilter(); wah.type='peaking'; wah.Q.value=4.2;
+    wah.gain.value=FIXED.wah*16; wah.frequency.value=760;
+    var wLFO=AC.createOscillator(); wLFO.type='sine'; wLFO.frequency.value=1.15;
+    wahDepth=AC.createGain(); wahDepth.gain.value=FIXED.wah*620;
+    wLFO.connect(wahDepth); wahDepth.connect(wah.frequency); wLFO.start();
+    wah.connect(phIn);
+
+    postHP=AC.createBiquadFilter(); postHP.type='highpass'; postHP.frequency.value=130;
+    postHP.connect(wah);
+    postLP=AC.createBiquadFilter(); postLP.type='lowpass'; postLP.Q.value=.6;
+    postLP.frequency.value=2600+S.fuzz*2600; postLP.connect(postHP);
+    shaper=AC.createWaveShaper(); shaper.oversample='4x'; shaper.curve=fuzzCurve(S.fuzz);
+    shaper.connect(postLP);
+    var pre=AC.createBiquadFilter(); pre.type='peaking';
+    pre.frequency.value=920; pre.Q.value=.9; pre.gain.value=8; pre.connect(shaper);
+    sazIn=AC.createGain(); sazIn.gain.value=.6+S.fuzz*1.6; sazIn.connect(pre);
+
+    var bsh=AC.createWaveShaper(); bsh.oversample='2x';
+    var bc=new Float32Array(1024);
+    for(var k=0;k<1024;k++) bc[k]=Math.tanh(3.4*(k*2/1023-1))*.9;
+    bsh.curve=bc;
+    var blp=AC.createBiquadFilter(); blp.type='lowpass'; blp.frequency.value=850; blp.Q.value=.7;
+    bassBus=AC.createGain(); bassBus.gain.value=.5;
+    bassBus.connect(bsh); bsh.connect(blp); blp.connect(master);
+
+    drumBus=AC.createGain(); drumBus.gain.value=FIXED.drums;
+    drumBus.connect(master); drumBus.connect(conv);
+
+    organGain=AC.createGain(); organGain.gain.value=0;
+    var olp=AC.createBiquadFilter(); olp.type='lowpass'; olp.frequency.value=1700;
+    organGain.connect(olp); olp.connect(master); olp.connect(conv);
+  }
+
+  function applyKnobs(){
+    if(!AC) return;
+    var t=AC.currentTime;
+    shaper.curve=fuzzCurve(S.fuzz);
+    sazIn.gain.setTargetAtTime(.6+S.fuzz*1.6,t,.02);
+    postLP.frequency.setTargetAtTime(2600+S.fuzz*2600,t,.02);
+    phDepth.gain.setTargetAtTime(S.phase*900,t,.02);
+    phWet.gain.setTargetAtTime(S.phase*.75,t,.02);
+    organGain.gain.setTargetAtTime(S.playing?FIXED.organ*.34:0,t,.08);
+  }
+
+  function pluck(freq,dur){
+    var sr=AC.sampleRate,a=.5+FIXED.bright*.34,frac=1-a;
+    var N=Math.max(3,Math.round(sr/freq+frac));
+    var key=N+'|'+Math.round(dur*10);
+    if(pluckCache[key]) return pluckCache[key];
+    var len=Math.ceil(sr*dur),buf=AC.createBuffer(1,len,sr),y=buf.getChannelData(0),i,last=0;
+    for(i=0;i<N&&i<len;i++){
+      last+=.62*((Math.random()*2-1)-last);
+      y[i]=last*(i<N*.12?i/(N*.12):1);
+    }
+    var t60=1.5+FIXED.bright*1.6,d=Math.exp(Math.log(.001)/(sr*t60));
+    for(i=N;i<len;i++) y[i]=d*(a*y[i-N]+(1-a)*y[i-N+1]);
+    var f=Math.floor(sr*.04);
+    for(i=0;i<f;i++) y[len-1-i]*=i/f;
+    var rec={buf:buf,hz:sr/(N-frac)};
+    pluckCache[key]=rec;
+    return rec;
+  }
+
+  function sazNote(cents,when,dur,vel,slide){
+    if(!AC) return;
+    var f=SAZ*Math.pow(2,cents/1200),st=pluck(f,Math.min(dur+1.0,2.8));
+    var src=AC.createBufferSource(); src.buffer=st.buf;
+    var rate=f/st.hz;
+    if(slide){
+      src.playbackRate.setValueAtTime(rate*Math.pow(2,-(FIXED.slide*.9)/12),when);
+      src.playbackRate.exponentialRampToValueAtTime(rate,when+.035+FIXED.slide*.05);
+    } else src.playbackRate.value=rate;
+    var g=AC.createGain();
+    g.gain.setValueAtTime(0,when);
+    g.gain.linearRampToValueAtTime(vel,when+.004);
+    g.gain.setTargetAtTime(.0001,when+dur*.75,dur*.45);
+    src.connect(g); g.connect(sazIn);
+    src.start(when); src.stop(when+Math.min(dur+1.1,2.9));
+    litRuler(cents,when);
+  }
+  function bassNote(cents,when,dur){
+    var o=AC.createOscillator(),g=AC.createGain();
+    o.type='sawtooth'; o.frequency.value=SAZ/4*Math.pow(2,cents/1200);
+    g.gain.setValueAtTime(0,when);
+    g.gain.linearRampToValueAtTime(.5,when+.01);
+    g.gain.setTargetAtTime(.0001,when+dur*.6,dur*.3);
+    o.connect(g); g.connect(bassBus); o.start(when); o.stop(when+dur+.35);
+  }
+  function organChord(when,dur){
+    organOsc.forEach(function(o){try{o.stop(when);}catch(e){}}); organOsc=[];
+    var sc=S.makam.cents;
+    [sc[0],sc[3],sc[4]].forEach(function(c,k){
+      [0,1].forEach(function(v){
+        var o=AC.createOscillator(),g=AC.createGain();
+        o.type=v?'triangle':'sawtooth';
+        o.frequency.value=SAZ/2*Math.pow(2,c/1200)*(v?2:1);
+        o.detune.value=(k-1)*5+(v?6:-6);
+        g.gain.setValueAtTime(0,when);
+        g.gain.linearRampToValueAtTime(v?.045:.085,when+.05);
+        g.gain.setTargetAtTime(.0001,when+dur*.8,dur*.4);
+        o.connect(g); g.connect(organGain);
+        o.start(when); o.stop(when+dur+.6); organOsc.push(o);
+      });
+    });
+  }
+  function nb(when,dur,freq,q,vel,type){
+    var len=Math.ceil(AC.sampleRate*dur),b=AC.createBuffer(1,len,AC.sampleRate),d=b.getChannelData(0);
+    for(var i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.4);
+    var sc=AC.createBufferSource(); sc.buffer=b;
+    var f=AC.createBiquadFilter(); f.type=type||'bandpass'; f.frequency.value=freq; f.Q.value=q;
+    var g=AC.createGain(); g.gain.value=vel;
+    sc.connect(f); f.connect(g); g.connect(drumBus); sc.start(when);
+  }
+  function kick(when,vel){
+    var o=AC.createOscillator(),g=AC.createGain();
+    o.frequency.setValueAtTime(150,when);
+    o.frequency.exponentialRampToValueAtTime(46,when+.11);
+    g.gain.setValueAtTime(vel,when);
+    g.gain.exponentialRampToValueAtTime(.0008,when+.22);
+    o.connect(g); g.connect(drumBus); o.start(when); o.stop(when+.24);
+    nb(when,.022,170,1.1,vel*.34,'lowpass');
+  }
+  function snare(when,vel){
+    nb(when,.15,1650,.85,vel*.5); nb(when,.05,3400,.7,vel*.28,'highpass');
+    var o=AC.createOscillator(),g=AC.createGain();
+    o.frequency.setValueAtTime(205,when);
+    g.gain.setValueAtTime(vel*.24,when);
+    g.gain.exponentialRampToValueAtTime(.0008,when+.09);
+    o.connect(g); g.connect(drumBus); o.start(when); o.stop(when+.11);
+  }
+
+  function groupStarts(u){var o=[],a=0;u.groups.forEach(function(g){o.push(a);a+=g;});return o;}
+  function total(u){return u.groups.reduce(function(a,b){return a+b;},0);}
+  function makeRiff(){
+    var u=S.usul,T=total(u),gs=groupStarts(u),
+        m=MOTIFS[Math.floor(Math.random()*MOTIFS.length)];
+    var cells=new Array(T).fill(null),mi=0,i;
+    for(i=0;i<T;i++){
+      var isG=gs.indexOf(i)>=0;
+      if(isG||Math.random()<.62){
+        cells[i]={deg:m[mi%m.length],accent:isG,
+                  slide:isG?(i>0&&Math.random()<.45):Math.random()<.32};
+        mi++;
+      }
+    }
+    if(cells[0]) cells[0].deg=0;
+    var interior=[]; for(i=0;i<T;i++) if(cells[i]&&!cells[i].accent) interior.push(i);
+    if(interior.length===T-gs.length&&interior.length>0)
+      cells[interior[Math.floor(Math.random()*interior.length)]]=null;
+    riff=cells; drawGrid();
+  }
+  function degCents(deg){
+    var sc=S.makam.cents,n=7,oct=Math.floor(deg/n),idx=((deg%n)+n)%n;
+    return sc[idx]+oct*1200;
+  }
+  function eighth(){return 60/S.bpm/2;}
+
+  function scheduleStep(idx,when){
+    var u=S.usul,T=total(u),pos=idx%T,e=eighth(),gs=groupStarts(u);
+    var isG=gs.indexOf(pos)>=0,isCycle=(pos===0);
+    if(isCycle) cycles++;
+    nb(when,pos===T-1?.1:.026,8600,.8,(isG?1:.62)*.15,'highpass');
+    if(u.kick.indexOf(pos)>=0) kick(when,isCycle?1:.82);
+    if(u.snare.indexOf(pos)>=0) snare(when,.78);
+    if(!isG&&u.kick.indexOf(pos)<0&&u.snare.indexOf(pos)<0&&Math.random()<.5) nb(when,.05,2400,3.4,.22);
+    if(isCycle&&cycles%2===1) organChord(when,e*T*2);
+    if(!riff||riff.length!==T) makeRiff();
+    var c=riff[pos];
+    if(c){
+      var deg=c.deg;
+      if(cycles%4===0&&pos>T-3&&Math.random()<.5) deg+=1;
+      sazNote(degCents(deg),when,e*(c.accent?1.5:.95),c.accent?.34:.24,c.slide);
+      if(c.accent) bassNote(degCents(deg-7),when,e*1.4);
+    } else if(isG) bassNote(degCents(-7),when,e*1.2);
+  }
+  function tick(){
+    while(nextT<AC.currentTime+.16){
+      scheduleStep(stepN,nextT); highlightCell(stepN,nextT);
+      nextT+=eighth(); stepN++;
+    }
+  }
+  function start(){
+    initAudio();
+    if(AC.state==='suspended') AC.resume();
+    if(!riff) makeRiff();
+    S.playing=true; stepN=0; cycles=0; nextT=AC.currentTime+.08;
+    applyKnobs(); timer=setInterval(tick,25); tick();
+    $('pg-play').textContent='■ Stop'; $('pg-play').classList.add('on');
+  }
+  function stop(){
+    S.playing=false;
+    if(timer){clearInterval(timer);timer=null;}
+    organOsc.forEach(function(o){try{o.stop();}catch(e){}}); organOsc=[];
+    applyKnobs();
+    $('pg-play').textContent='▶ Play'; $('pg-play').classList.remove('on');
+    cellEls.forEach(function(c){c.classList.remove('now');});
+  }
+
+  /* ---------- UI ---------- */
+  function chips(host,list,curId,onPick){
+    host.innerHTML='';
+    list.forEach(function(it){
+      var b=document.createElement('button');
+      b.type='button'; b.className='mm-btn mm-chip';
+      b.setAttribute('aria-pressed', it.id===curId?'true':'false');
+      b.innerHTML=it.name+'<small>'+it.gloss+'</small>';
+      b.onclick=function(){
+        [].forEach.call(host.children,function(c){c.setAttribute('aria-pressed','false');});
+        b.setAttribute('aria-pressed','true'); onPick(it);
+      };
+      host.appendChild(b);
+    });
+  }
+  function drawRuler(){
+    var el=$('pg-ruler'); el.innerHTML=''; degEls=[];
+    for(var i=0;i<=12;i++){
+      var pct=i*100/1200*100;
+      var t=document.createElement('div'); t.className='et'; t.style.left=pct+'%'; el.appendChild(t);
+      var l=document.createElement('div'); l.className='etlab'; l.style.left=pct+'%';
+      l.textContent=ET[i]; el.appendChild(l);
+    }
+    var ax=document.createElement('div'); ax.className='axis'; el.appendChild(ax);
+    var parts=[];
+    S.makam.cents.forEach(function(c){
+      var pct=c/1200*100;
+      var d=document.createElement('div'); d.className='deg'; d.style.left=pct+'%';
+      el.appendChild(d); degEls.push({el:d,cents:c});
+      var dev=Math.round(c-Math.round(c/100)*100);
+      var v=document.createElement('div');
+      v.className='dev '+(Math.abs(dev)>=6?'off':'on'); v.style.left=pct+'%';
+      v.textContent=(dev>0?'+':'')+dev; el.appendChild(v);
+      parts.push(Math.round(c)+' cents ('+(dev>0?'+':'')+dev+' against the nearest piano note)');
+    });
+    $('pg-rulerText').textContent='Makam '+S.makam.name+' degrees, measured from the tonic: '+parts.join('; ')+'.';
+  }
+  function litRuler(cents,when){
+    var c=((cents%1200)+1200)%1200,best=null,bd=1e9;
+    degEls.forEach(function(d){var dd=Math.abs(d.cents-c); if(dd<bd){bd=dd;best=d;}});
+    if(!best) return;
+    setTimeout(function(){
+      best.el.classList.add('lit');
+      setTimeout(function(){best.el.classList.remove('lit');},150);
+    },Math.max(0,(when-AC.currentTime)*1000));
+  }
+  function drawGrid(){
+    var el=$('pg-grid'); el.innerHTML=''; cellEls=[];
+    var u=S.usul,T=total(u),gs=groupStarts(u);
+    for(var i=0;i<T;i++){
+      var d=document.createElement('div'); d.className='mm-cell';
+      if(gs.indexOf(i)>=0) d.classList.add('gstart');
+      var c=riff&&riff[i];
+      if(c){ d.classList.add('note'); d.style.height=(26+(c.deg+2)*11)+'px'; }
+      el.appendChild(d); cellEls.push(d);
+    }
+  }
+  function highlightCell(idx,when){
+    if(!cellEls.length) return;
+    var pos=idx%cellEls.length;
+    setTimeout(function(){
+      cellEls.forEach(function(c){c.classList.remove('now');});
+      if(cellEls[pos]) cellEls[pos].classList.add('now');
+    },Math.max(0,(when-AC.currentTime)*1000));
+  }
+  var ROW='asdfghjk';
+  function buildKeys(){
+    var el=$('pg-keys'); el.innerHTML='';
+    var sc=S.makam.cents;
+    for(var i=0;i<8;i++){
+      (function(i){
+        var b=document.createElement('button'); b.type='button'; b.className='mm-key';
+        b.innerHTML=ROW[i].toUpperCase()+'<span>'+Math.round(sc[i])+' ¢</span>';
+        b.setAttribute('aria-label','Degree '+(i+1)+', '+Math.round(sc[i])+' cents');
+        b.onmousedown=function(){hit(i,false,b);};
+        el.appendChild(b);
+      })(i);
+    }
+  }
+  function hit(i,shift,el){
+    initAudio(); if(AC.state==='suspended') AC.resume();
+    sazNote(S.makam.cents[i]+(shift?1200:0),AC.currentTime+.005,1.0,.40,true);
+    if(el){el.classList.add('hit'); setTimeout(function(){el.classList.remove('hit');},110);}
+  }
+
+  chips($('pg-makams'),MAKAMS,'hicaz',function(m){
+    S.makam=m; drawRuler(); buildKeys(); $('pg-note').textContent=m.note;
+  });
+  chips($('pg-usuls'),USULS,'a9',function(u){S.usul=u; stepN=0; makeRiff();});
+  $('pg-play').onclick=function(){ S.playing?stop():start(); };
+  $('pg-roll').onclick=function(){ makeRiff(); };
+  [['pg-fuzz','pg-vfuzz','fuzz',100,'%'],
+   ['pg-phase','pg-vphase','phase',100,'%'],
+   ['pg-bpm','pg-vbpm','bpm',1,' bpm']].forEach(function(k){
+    var inp=$(k[0]),out=$(k[1]);
+    function sync(){
+      var v=+inp.value;
+      S[k[2]] = k[3]===1 ? v : v/100;
+      out.textContent = v+k[4];
+      applyKnobs();
+    }
+    inp.addEventListener('input',sync); sync();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.repeat||e.metaKey||e.ctrlKey||e.altKey) return;
+    if(/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+    var sec=$('playground'),r=sec.getBoundingClientRect();
+    if(r.bottom<0||r.top>window.innerHeight) return;   /* only when on screen */
+    var i=ROW.indexOf(e.key.toLowerCase());
+    if(i>=0){ e.preventDefault(); hit(i,e.shiftKey,$('pg-keys').children[i]); }
+  });
+  /* stop when the section leaves the viewport - nobody wants a riff
+     following them into the footer */
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      es.forEach(function(en){ if(!en.isIntersecting&&S.playing) stop(); });
+    },{threshold:0}).observe($('playground'));
+  }
+
+  drawRuler(); buildKeys(); $('pg-note').textContent=MAKAMS[0].note; makeRiff();
+})();
+
+</script>
+</body>
+</html>
