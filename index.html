@@ -16,7 +16,7 @@
 <title>Anatolian Rock — A field guide, 1965 to 1980</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Monoton&family=Rubik:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo+Black&family=Monoton&family=Rubik:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --hero:"Monoton",Georgia,serif;
@@ -140,11 +140,19 @@ a{color:inherit}
   animation:spin 150s linear infinite;}
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
 
-.arch{display:flex;justify-content:center;flex-wrap:nowrap;margin-bottom:.2rem}
-.arch{gap:clamp(.05rem,.6vw,.5rem)}
-.arch span{font-family:var(--hero);font-size:clamp(2.3rem,10.5vw,8.2rem);line-height:1;
-  display:inline-block;transform-origin:50% 135%;
-  filter:drop-shadow(0 0 10px currentColor) drop-shadow(0 0 26px currentColor);}
+/* masthead: a newspaper nameplate lockup, standing in for the old per-letter
+   rainbow arch — which read as a generic psychedelic band logo. The colour
+   still does the talking here, just from the rules and the glow, not the
+   letterforms. */
+.masthead{max-width:52rem;margin:0 auto;text-align:center}
+.masthead-rule{height:3px;border-radius:2px;margin:0 auto 1.15rem;
+  background:linear-gradient(90deg,var(--pembe),var(--portakal),var(--safran),var(--turkuaz));}
+.masthead-rule--bottom{height:2px;margin:1.5rem auto 0;opacity:.55}
+.nameplate{display:flex;flex-direction:column;align-items:center;gap:.04em;margin-top:1.1rem}
+.np-top{font-family:"Archivo Black",Georgia,sans-serif;font-weight:400;
+  font-size:clamp(2.5rem,10.6vw,7.1rem);line-height:.94;letter-spacing:.005em;
+  color:var(--krem);
+  text-shadow:0 0 10px rgba(255,242,216,.55),0 0 32px var(--turkuaz),0 0 58px var(--pembe);}
 .rock{font-family:var(--hero);text-align:center;font-size:clamp(2.9rem,14.5vw,11rem);line-height:1;
   color:var(--krem);letter-spacing:.015em;margin-top:.1em;
   text-shadow:0 0 7px rgba(255,242,216,.65),0 0 30px var(--pembe),0 0 62px var(--mor);
@@ -153,7 +161,7 @@ a{color:inherit}
   0%,100%{text-shadow:0 0 7px rgba(255,242,216,.65),0 0 30px var(--pembe),0 0 62px var(--mor)}
   50%{text-shadow:0 0 9px rgba(255,242,216,.8),0 0 40px var(--pembe),0 0 84px var(--mor)}}
 @media (prefers-reduced-motion:reduce){.rock{animation:none}}
-.hero-kicker{color:var(--safran);text-align:center;display:block;margin-bottom:2.4rem}
+.hero-kicker{color:var(--safran);text-align:center;display:block;margin:0}
 .hero-years{text-align:center;font-family:"Rubik",system-ui,sans-serif;font-weight:700;
   font-size:clamp(.75rem,2.2vw,1.05rem);letter-spacing:.4em;
   margin:2.2rem 0 2.4rem;color:var(--turkuaz);}
@@ -499,19 +507,15 @@ footer .mono{display:inline-block;margin-bottom:1.3rem;padding:.4rem .8rem;borde
   <div class="rosette" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
   <div class="wrap">
-    <span class="mono hero-kicker">Anatolian Rock · A field guide</span>
-    <h1>
-      <span class="arch" aria-label="Anadolu">
-        <span style="transform:rotate(-16.5deg);color:var(--pembe)" aria-hidden="true">A</span>
-        <span style="transform:rotate(-11deg);color:var(--portakal)" aria-hidden="true">N</span>
-        <span style="transform:rotate(-5.5deg);color:var(--safran)" aria-hidden="true">A</span>
-        <span style="transform:rotate(0deg);color:var(--turkuaz)" aria-hidden="true">D</span>
-        <span style="transform:rotate(5.5deg);color:var(--safran)" aria-hidden="true">O</span>
-        <span style="transform:rotate(11deg);color:var(--portakal)" aria-hidden="true">L</span>
-        <span style="transform:rotate(16.5deg);color:var(--pembe)" aria-hidden="true">U</span>
-      </span>
-      <span class="rock">ROCK</span>
-    </h1>
+    <div class="masthead">
+      <div class="masthead-rule" aria-hidden="true"></div>
+      <span class="mono hero-kicker">Anatolian Rock · A field guide</span>
+      <h1 class="nameplate">
+        <span class="np-top">ANADOLU</span>
+        <span class="rock">ROCK</span>
+      </h1>
+      <div class="masthead-rule masthead-rule--bottom" aria-hidden="true"></div>
+    </div>
     <div class="hero-years">1965 – 1980</div>
     <p class="thesis">A newspaper contest invented it in 1965 and a military coup shut it down in 1980. In the fifteen years between, a generation ran Anatolian folk melodies through fuzz pedals and <b>built a sound that existed nowhere else on earth.</b></p>
     <p class="mono scroll-cue">Wander in ↓</p>
