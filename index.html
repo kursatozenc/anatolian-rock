@@ -285,6 +285,23 @@ h2 em{font-style:normal;color:var(--safran)}
 .rev h3 a:hover{color:var(--safran);text-decoration-color:var(--safran)}
 .rev p{font-size:.93rem;font-weight:300;color:rgba(255,242,216,.88)}
 
+/* --- sources --- */
+footer .srcs{display:grid;gap:1.5rem 2.6rem;margin-top:1.5rem}
+@media(min-width:760px){footer .srcs{grid-template-columns:1fr 1fr}}
+footer .srcs h3{font-family:"Rubik",system-ui,sans-serif;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;font-size:.55rem;
+  color:var(--safran);margin-bottom:.55rem}
+footer .srcs ul{list-style:none}
+footer .srcs li{margin-bottom:.45rem;font-size:.85rem;line-height:1.45}
+footer .srcs a{color:rgba(255,242,216,.86);text-decoration:underline;
+  text-underline-offset:2px;text-decoration-color:rgba(255,242,216,.28)}
+footer .srcs a:hover{color:var(--safran);text-decoration-color:var(--safran)}
+footer .srcs .pub{color:rgba(255,242,216,.45)}
+footer .disputed{margin-top:2rem;border-top:1px solid rgba(255,242,216,.16);
+  padding-top:1.3rem;max-width:46rem}
+footer .disputed ol{margin:.8rem 0 0 1.1rem}
+footer .disputed li{margin-bottom:.8rem;font-size:.86rem;line-height:1.5}
+
 /* --- listen --- */
 #listen{background:var(--void-deep)}
 .player-link{margin:2.2rem 0 .4rem}
@@ -507,7 +524,7 @@ footer .mono{display:inline-block;margin-bottom:1.3rem;padding:.4rem .8rem;borde
           <li><span class="yr">1965</span><span>Yıldırım Gürses wins with a crooner's ballad, the least modern thing entered. Mavi Işıklar take second.</span></li>
           <li><span class="yr">1966</span><span>Silüetler take first, Mavi Işıklar second again.</span></li>
           <li><span class="yr">1967</span><span>Cem Karaca ve Apaşlar place second.</span></li>
-          <li><span class="yr">1968</span><span>The final edition. Haramiler second, Moğollar third, the Erkin Koray Dörtlüsü fourth. Nearly the whole first generation, in one room.</span></li>
+          <li><span class="yr">1968</span><span>The final edition. First prize goes to the T.P.A.O. Batman Orkestrası, an orchestra belonging to the state petroleum company. Haramiler place second, Moğollar third, the Erkin Koray Dörtlüsü fourth. Nearly the whole first generation, in one room.</span></li>
         </ul>
       </div>
       <aside class="clipping rise">
@@ -764,9 +781,59 @@ footer .mono{display:inline-block;margin-bottom:1.3rem;padding:.4rem .8rem;borde
 
 <footer>
   <div class="wrap">
-    <span class="mono">Notes on sources</span>
-    <p>Dates and events here are drawn from published accounts of the Altın Mikrofon competition, artist discographies, and reporting on the 1980 coup and its consequences for musicians. Where accounts disagree, which happens often on release years for early singles, the more conservative claim is used or the date is left off.</p>
-    <p>Turkish spellings are kept as they are. Track picks are opinion.</p>
+    <span class="mono">Sources</span>
+    <p>Where accounts disagree, which happens often on release years for early singles, the more conservative claim is used or the date is left off. Turkish spellings are kept as they are. Track picks are opinion.</p>
+    <div class="srcs">
+    <div>
+      <h3>The scene</h3>
+      <ul>
+      <li><a href="https://www.bidoun.org/articles/golden-microphone" target="_blank" rel="noopener">Golden Microphone</a><br><span class="pub">Bidoun</span></li>
+      <li><a href="https://norient.com/academic/anatolian-rock" target="_blank" rel="noopener">Anatolian Rock: Phenomena of Hybridization</a><br><span class="pub">Norient</span></li>
+      <li><a href="https://en.wikipedia.org/wiki/Golden_Microphone_(Turkey)" target="_blank" rel="noopener">Golden Microphone (Turkey)</a><br><span class="pub">Wikipedia</span></li>
+      <li><a href="https://en.wikipedia.org/wiki/Anatolian_rock" target="_blank" rel="noopener">Anatolian rock</a><br><span class="pub">Wikipedia</span></li>
+      <li><a href="http://bodegapop.blogspot.com/2017/03/altn-mikrofon-1965-68.html" target="_blank" rel="noopener">Altın Mikrofon 1965–68</a><br><span class="pub">Bodega Pop</span></li>
+      <li><a href="https://www.turquazz.com/a-cultural-reorientation-in-turkish-music-anatolian-psychedelia/" target="_blank" rel="noopener">A Cultural Reorientation in Turkish Music</a><br><span class="pub">Turquazz</span></li>
+      <li><a href="https://www.t-vine.com/the-godfathers-of-turkish-psychedelic-rock" target="_blank" rel="noopener">The Godfathers of Turkish Psychedelic Rock</a><br><span class="pub">T-VINE</span></li>
+      <li><a href="https://www.weloveist.com/turkish-rock-story-1-anatolian-rock-delight" target="_blank" rel="noopener">Turkish Rock Story #1: Anatolian Rock Delight</a><br><span class="pub">We Love Ist</span></li>
+      <li><a href="http://web.archive.org/web/20230709175308/https://www.djbroadcast.net/article/98916/anatolian-rock-the-roots-and-rediscovery" target="_blank" rel="noopener">Anatolian Rock: The Roots and Rediscovery</a><br><span class="pub">DJBroadcast · archived</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Moğollar</h3>
+      <ul>
+      <li><a href="https://www.psychedelicbabymag.com/2020/12/mogollar-interview.html" target="_blank" rel="noopener">Moğollar interview</a><br><span class="pub">It’s Psychedelic Baby</span></li>
+      <li><a href="https://www.allmusic.com/album/les-mogol-danses-et-rythmes-de-la-turquie-mw0001747427" target="_blank" rel="noopener">Danses et Rythmes de la Turquie</a><br><span class="pub">AllMusic</span></li>
+      <li><a href="http://web.archive.org/web/20201210215552/https://www.nightdreamer.co.uk/mogollar" target="_blank" rel="noopener">Moğollar</a><br><span class="pub">Night Dreamer · archived</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Cem Karaca</h3>
+      <ul>
+      <li><a href="https://www.hurriyetdailynews.com/remembering-cem-karaca-the-father-of-anatolian-rock-151870" target="_blank" rel="noopener">Remembering Cem Karaca</a><br><span class="pub">Hürriyet Daily News</span></li>
+      <li><a href="https://en.wikipedia.org/wiki/Cem_Karaca" target="_blank" rel="noopener">Cem Karaca</a><br><span class="pub">Wikipedia</span></li>
+      <li><a href="https://www.toleranzraeume.org/en/biographies/cem-karaca/" target="_blank" rel="noopener">Cem Karaca</a><br><span class="pub">ToleranzRäume</span></li>
+      <li><a href="https://www.turkiyetoday.com/culture/remembering-anatolian-rock-legend-cem-karaca-20-years-after-his-passing-11605/" target="_blank" rel="noopener">Remembering Cem Karaca, 20 years on</a><br><span class="pub">Türkiye Today</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Selda Bağcan</h3>
+      <ul>
+      <li><a href="https://www.songlines.co.uk/content/features/selda-bagcan-a-beginners-guide" target="_blank" rel="noopener">Selda Bağcan: A Beginner’s Guide</a><br><span class="pub">Songlines · Daniel Spicer</span></li>
+      <li><a href="https://www.thewire.co.uk/in-writing/interviews/shane-woolman-speaks-to-selda-bagcan" target="_blank" rel="noopener">“Write journalist write!” — interview</a><br><span class="pub">The Wire</span></li>
+      <li><a href="https://www.turquazz.com/life-and-music-of-selda-bagcan-the-bitter-voice-of-turkey/" target="_blank" rel="noopener">Life and Music of Selda Bağcan</a><br><span class="pub">Turquazz</span></li>
+      <li><a href="http://seldabagcan.com.tr/about-me/" target="_blank" rel="noopener">About Selda</a><br><span class="pub">seldabagcan.com.tr</span></li>
+      <li><a href="https://en.wikipedia.org/wiki/Selda_Bagcan" target="_blank" rel="noopener">Selda Bağcan</a><br><span class="pub">Wikipedia</span></li>
+      </ul>
+    </div>
+    </div>
+    <div class="disputed">
+      <span class="mono" style="color:var(--safran)">Two points where sources conflict</span>
+      <ol>
+        <li>Several Turkish outlets report that Selda Bağcan was stripped of her citizenship alongside Cem Karaca on 6 January 1983. Her own site, her interviews and Wikipedia say otherwise: she stayed in Turkey, was jailed three times and had her passport withheld until 1987. This page follows her account.</li>
+        <li>First prize at the final Altın Mikrofon in 1968 went to the T.P.A.O. Batman Orkestrası, an orchestra belonging to the state petroleum company, rather than to any of the rock acts behind it. The timeline names the runners-up because they are the ones who mattered afterwards.</li>
+      </ol>
+    </div>
+    <p style="margin-top:1.8rem">Daniel Spicer’s <em>The Turkish Psychedelic Music Explosion: Anadolu Psych 1965–1980</em> (Repeater Books) is the standard English-language treatment. It was not consulted directly for this page.</p>
   </div>
 </footer>
 
