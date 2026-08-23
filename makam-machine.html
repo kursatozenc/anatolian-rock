@@ -34,6 +34,8 @@ button{font-family:"Rubik",sans-serif;font-weight:700;letter-spacing:.1em;text-t
   font-size:.64rem;border:0;cursor:pointer;border-radius:999px;padding:.8rem 1.4rem;
   background:rgba(255,242,216,.1);color:var(--krem);transition:transform .18s,background .18s}
 button:hover{transform:translateY(-2px)}
+button:active{transform:translateY(1px)}
+button.flash{background:var(--safran)!important;color:var(--void)!important}
 #play{background:var(--pembe);color:var(--krem);padding:.95rem 2rem;font-size:.72rem}
 #play.on{background:var(--safran);color:var(--void)}
 #reroll{background:var(--mor);color:var(--krem)}
@@ -677,7 +679,15 @@ btn.onclick=function(){
   if(S.playing){stop();btn.textContent='▶ Play';btn.classList.remove('on');}
   else{start();btn.textContent='■ Stop';btn.classList.add('on');}
 };
-$('reroll').onclick=function(){ makeRiff(); };
+$('reroll').onclick=function(){
+  var b=this;
+  makeRiff();
+  b.classList.add('flash');
+  setTimeout(function(){b.classList.remove('flash');},220);
+  step=0; cycleCount=0;                 // start the new figure on its downbeat
+  if(!S.playing){ start(); btn.textContent='■ Stop'; btn.classList.add('on'); }
+  else if(AC){ nextT=AC.currentTime+.06; }
+};
 $('solo').onclick=function(){
   S.solo=!S.solo; this.classList.toggle('sel');
   this.textContent=S.solo?'Full band':'Saz only'; applyKnobs();

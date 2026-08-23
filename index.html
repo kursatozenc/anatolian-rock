@@ -355,6 +355,10 @@ footer .mono{display:inline-block;margin-bottom:1.3rem;padding:.4rem .8rem;borde
   padding:.85rem 1.5rem;background:rgba(255,242,216,.12);color:var(--krem);
   transition:transform .18s ease,background .18s ease}
 .mm-btn:hover{transform:translateY(-2px)}
+.mm-btn:active{transform:translateY(1px)}
+/* New riff changes a grid that is often below the fold, so the button
+   has to confirm the press by itself */
+.mm-btn.flash{background:var(--safran);color:var(--void)}
 #pg-play{background:var(--pembe);color:var(--krem);padding:1rem 2.1rem;font-size:.72rem}
 #pg-play.on{background:var(--safran);color:var(--void)}
 #pg-roll{background:var(--mor);color:var(--krem)}
@@ -1207,7 +1211,18 @@ footer .mono{display:inline-block;margin-bottom:1.3rem;padding:.4rem .8rem;borde
   });
   chips($('pg-usuls'),USULS,'a9',function(u){S.usul=u; stepN=0; makeRiff();});
   $('pg-play').onclick=function(){ S.playing?stop():start(); };
-  $('pg-roll').onclick=function(){ makeRiff(); };
+  $('pg-roll').onclick=function(){
+    var b=this;
+    makeRiff();
+    b.classList.add('flash');
+    setTimeout(function(){b.classList.remove('flash');},220);
+    /* Restart the figure on its own downbeat. Swapping mid-cycle blends the
+       new riff into the tail of the old one, which is why this read as
+       doing nothing. */
+    stepN=0; cycles=0;
+    if(!S.playing){ start(); }
+    else if(AC){ nextT=AC.currentTime+.06; }
+  };
   [['pg-fuzz','pg-vfuzz','fuzz',100,'%'],
    ['pg-phase','pg-vphase','phase',100,'%'],
    ['pg-bpm','pg-vbpm','bpm',1,' bpm']].forEach(function(k){
