@@ -163,8 +163,19 @@ a{color:inherit}
 .scroll-cue{text-align:center;margin-top:3.4rem;color:var(--pembe)}
 
 /* ============ wavy dividers ============ */
-.wave{display:block;width:100%;height:52px;position:relative;z-index:3;margin-bottom:-1px}
-.wave.flip{transform:rotate(180deg);margin:-1px 0 0}
+/* Each wave path fills only below its curve, so the rest of the 52px box is
+   transparent. Left in normal flow that transparent strip shows the body
+   background, which is only invisible when the neighbour happens to be --void
+   too. So each wave overlaps the neighbour on its transparent side: an upright
+   wave sits over the section above it, a flipped one (fill on top after the
+   rotate) sits over the section below. */
+.wave{display:block;width:100%;height:52px;position:relative;z-index:3;
+  margin-top:-52px;margin-bottom:-1px}
+/* Mirror the curve with scaleX, not rotate. rotate(180deg) also moved the fill
+   to the top of the box, which put a straight edge against the section above
+   and the wavy edge against the section below - whose background is the same
+   colour as the fill, so the curve was invisible. */
+.wave.flip{transform:scaleX(-1)}
 
 /* ============ sections ============ */
 section{padding:clamp(4.5rem,10vw,8rem) 0;position:relative}
