@@ -196,7 +196,7 @@ h2 em{font-style:normal;color:var(--safran)}
 .tl{position:relative;margin-top:3.4rem}
 .tl::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;border-radius:3px;
   background:linear-gradient(180deg,var(--turkuaz),var(--safran),var(--portakal),var(--pembe));}
-@media(min-width:820px){.tl::before{left:calc(50% - 2px)}}
+@media(min-width:820px){.tl::before{left:50%;margin-left:-2.5px}}
 .beat{position:relative;padding:0 0 3.4rem 1.9rem}
 .beat .yr{font-family:"Rubik",system-ui,sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.1em;
   color:var(--safran);display:block;margin-bottom:.5rem}
@@ -210,9 +210,9 @@ h2 em{font-style:normal;color:var(--safran)}
 @media(min-width:820px){
   .beat{width:50%;padding:0 3.2rem 3.8rem 0;text-align:right}
   .beat p{margin-left:auto}
-  .beat::before{left:auto;right:-11px}
+  .beat::before{left:auto;right:-9.5px}   /* 19px dot, so half of it past the edge */
   .beat.pol{margin-left:50%;padding:0 0 3.8rem 3.2rem;text-align:left}
-  .beat.pol::before{left:-11px;right:auto}
+  .beat.pol::before{left:-9.5px;right:auto}
   .beat.pol p{margin-left:0}
 }
 .track-key{display:flex;gap:1.6rem;flex-wrap:wrap;margin-bottom:1rem}
@@ -303,7 +303,7 @@ footer .mono{display:inline-block;margin-bottom:1.3rem;padding:.4rem .8rem;borde
 .tl-fill{position:absolute;left:0;top:0;width:5px;border-radius:3px;height:0;z-index:1;
   background:linear-gradient(180deg,var(--turkuaz),var(--safran),var(--portakal),var(--pembe));
   box-shadow:0 0 14px rgba(255,196,46,.55);transition:height .12s linear}
-@media(min-width:820px){.tl-fill{left:calc(50% - 2px)}}
+@media(min-width:820px){.tl-fill{left:50%;margin-left:-2.5px}}
 .tl::before{opacity:.18;background:var(--krem)!important}
 .beat{opacity:0;transform:translateX(-34px);
   transition:opacity .65s ease,transform .65s cubic-bezier(.2,.8,.3,1)}
